@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  direction: rtl;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #525050;
+}
+
+.header {
+  height: 80px;
+  width: 100%;
+  margin: 0 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.main-search {
+  border: 1px 5px;
+  width: 500px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid #4ca1e7;
+  color: #333333;
+  padding: 8px;
+  background-image: url("http://www.clker.com/cliparts/z/1/T/u/9/2/search-icon-hi.png");
+  background-size: 5%;
+  background-position-x: 99%;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  text-indent: 40px;
+  font-size: 15px;
+}
+
+.logo-container {
+  width: auto;
+}
+
+.logo-container h1 {
+  font-size: 50px;
+}
+
+.logo-container h1 span {
+  color: #e74c87;
+}
+
+.logo-container h3 {
+  font-size: 15px;
+  -webkit-transform: translateY(-12px);
+          transform: translateY(-12px);
+}
+
+.utils-container {
+  height: 34px;
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.utils-container * {
+  margin: 8px;
+  font-size: 30px;
+}
+/*# sourceMappingURL=style.css.map */
