@@ -5,6 +5,8 @@
   direction: rtl;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #525050;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .header {
@@ -25,7 +27,7 @@
 .main-search {
   border: 1px 5px;
   width: 500px;
-  height: 34px;
+  height: 50px;
   border-radius: 8px;
   border: 1px solid #4ca1e7;
   color: #333333;
@@ -37,6 +39,11 @@
   background-repeat: no-repeat;
   text-indent: 40px;
   font-size: 15px;
+}
+
+:focus {
+  outline: none;
+  border-width: 2px;
 }
 
 .logo-container {
@@ -74,5 +81,46 @@
 .utils-container * {
   margin: 8px;
   font-size: 30px;
+}
+
+.gallery {
+  background: #EEE;
+  margin: 50px auto;
+}
+
+.large {
+  height: 350px;
+}
+
+.mid {
+  height: 250px;
+  width: 80%;
+}
+
+.small {
+  height: 150px;
+  width: 80%;
+}
+
+.gallery-cell {
+  width: 17%;
+  height: 100%;
+  margin-right: 10px;
+  background: #8C8;
+  counter-increment: gallery-cell;
+}
+
+.large-cells {
+  width: 75%;
+}
+
+/* cell number */
+.gallery-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(gallery-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */

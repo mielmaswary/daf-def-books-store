@@ -1,10 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
+
+
     <title>Document</title>
 </head>
 <body>
@@ -21,11 +26,97 @@
             <i class="fas fa-bars"></i>
         </div>
     </div>
-    <div class="slide" id="main"></div>
-    <div class="slide" id="genres"></div>
-    <div class="slide" id="recommended"></div>
-    <div class="slide" id="sales"></div>
+
+    <div id="main" class="gallery large js-flickity" data-flickity-options='{
+         "wrapAround": true,
+         "autoPlay": true,
+         "selectedAttraction": 0.1,
+         "friction": 0.3 }'>
+         <div class="gallery-cell large-cells"></div>
+         <div class="gallery-cell large-cells"></div>
+         <div class="gallery-cell large-cells"></div>
+         <div class="gallery-cell large-cells"></div>
+         
+   </div>
+
+   <div id="genres" class="gallery small js-flickity" data-flickity-options='{ "wrapAround": true }'>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+
+  </div>  
+
+   <div id="recommended" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+
+  </div>  
+  
+   <div id="sales" class="gallery large js-flickity" data-flickity-options='{ "wrapAround": true }'>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+
+  </div>
+
+  <div id="sales" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+
+</div>
+
+<div id="sales" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+    <div class="gallery-cell"></div>
+
+</div>
+
+<footer></footer>
+  
+
+
+    <script type="module"  src="./main.js"></script>
 
     <script src="https://kit.fontawesome.com/6391380adf.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+
 </body>
 </html>
