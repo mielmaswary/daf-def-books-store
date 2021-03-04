@@ -1,5 +1,8 @@
-const booksImgSrc=[
- 'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10588/1100X345_gambitnew.jpg',
- 'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10377/1100X345_makor21.jpg',
- 'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10352/1100X345_8BookFEBnew.jpg'
+const bannersSrc=[
+    'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10352/1100X345_8BookFEBnew.jpg',
+    'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10402/1100X345_newBook21.jpg',
+    'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10352/1100X345_8BookFEBnew.jpg',
+    'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10379/1100X345_merz21.jpg',
+    'https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10379/1100X345_merz21.jpg'
+
 ]

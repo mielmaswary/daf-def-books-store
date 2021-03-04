@@ -12,7 +12,7 @@
 .header {
   height: 80px;
   width: 100%;
-  margin: 0 5px;
+  margin: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -22,6 +22,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-shadow: 0 4px 18px -2px rgba(128, 128, 128, 0.514);
+          box-shadow: 0 4px 18px -2px rgba(128, 128, 128, 0.514);
 }
 
 .main-search {
@@ -59,7 +61,7 @@
 }
 
 .logo-container h3 {
-  font-size: 15px;
+  font-size: 12px;
   -webkit-transform: translateY(-12px);
           transform: translateY(-12px);
 }
@@ -84,12 +86,11 @@
 }
 
 .gallery {
-  background: #EEE;
-  margin: 50px auto;
+  margin: 30px auto 30px auto;
 }
 
 .large {
-  height: 350px;
+  height: 270px;
 }
 
 .mid {
@@ -98,27 +99,86 @@
 }
 
 .small {
-  height: 150px;
+  height: 140px;
   width: 80%;
 }
 
 .gallery-cell {
-  width: 17%;
+  width: 18%;
   height: 100%;
   margin-right: 10px;
-  background: #8C8;
-  counter-increment: gallery-cell;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: contain;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.gallery-cell p {
+  font-size: 20px;
+  -webkit-transform: translateY(3px);
+          transform: translateY(3px);
 }
 
 .large-cells {
   width: 75%;
 }
 
+.banner1 {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10352/1100X345_8BookFEBnew.jpg");
+}
+
+.banner2 {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10402/1100X345_newBook21.jpg");
+}
+
+.banner3 {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10352/1100X345_8BookFEBnew.jpg");
+}
+
+.banner4 {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/NewBO/StripItems/10379/1100X345_merz21.jpg");
+}
+
+.proseImg {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/categories_icons/makor.png");
+}
+
+.romanceImg {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/categories_icons/romance.png");
+}
+
+.historyImg {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/categories_icons/history2.png");
+}
+
+.thrillerImg {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/categories_icons/action.png");
+}
+
+.kidsImg {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/categories_icons/yeladim.png");
+}
+
+.jewImg {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/categories_icons/judaism.png");
+}
+
+.biographyImg {
+  background-image: url("https://images-evrit.yit.co.il/Images/Products/categories_icons/biography.png");
+}
+
 /* cell number */
 .gallery-cell:before {
   display: block;
   text-align: center;
-  content: counter(gallery-cell);
   line-height: 200px;
   font-size: 80px;
   color: white;
