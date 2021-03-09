@@ -56,7 +56,7 @@ router.post('/books/add',async (req,res)=>{
 
 router.patch('/books/edit', async(req,res)=>{
     
-    const allowdUpdates = ["genres", "price","recommended","sale"];
+    const allowdUpdates = ["genres", "price","recommended","sale","new"];
 	for (let update in req.body) {
 		if (!allowdUpdates.includes(update)) {
 			return res.status(400).send({

@@ -36,6 +36,10 @@ const bookSchema= new mongoose.Schema({
     sale:{
         type:Boolean,
         default:false
+    },
+    new:{
+        type:Boolean,
+        default:false
     }
 })
 
