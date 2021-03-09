@@ -7,19 +7,6 @@ mongoose.connect(process.env.MONGODB,{
 
 })
 
-const userSchema= new mongoose.Schema({
-    name:{
-       type:String
-    },
-    email:{
-        type: String
-    },
-    password:{
-       type: String
-    }
-})
-
-const User=mongoose.model('user',userSchema);
 
 
 const bookSchema= new mongoose.Schema({
@@ -43,7 +30,7 @@ const bookSchema= new mongoose.Schema({
     },
     recommended:{
        type: Boolean,
-       default:false
+               default:false
 
     },
     sale:{

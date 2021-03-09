@@ -90,7 +90,7 @@
 }
 
 .large {
-  height: 270px;
+  height: 20vw;
 }
 
 .mid {
@@ -104,7 +104,8 @@
 }
 
 .gallery-cell {
-  width: 18%;
+  width: 14vw;
+  min-width: 125px;
   height: 100%;
   margin-right: 10px;
   background-repeat: no-repeat;
@@ -128,7 +129,9 @@
 }
 
 .large-cells {
-  width: 75%;
+  width: 66%;
+  height: 300px;
+  min-width: 500px;
 }
 
 .banner1 {

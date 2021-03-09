@@ -80,7 +80,7 @@
     margin:30px auto 30px auto;
   }
   .large{
-    height: 270px;
+    height: 20vw;
   }
   .mid{
     height: 250px;
@@ -93,7 +93,8 @@
   
   
   .gallery-cell {
-    width: 18%;
+    width:14vw;
+    min-width: 125px;
     height: 100%;
     margin-right: 10px;
     // counter-increment: gallery-cell;
@@ -109,7 +110,9 @@
     }
   }
   .large-cells{
-    width: 75%;
+    width: 66%;
+    height: 300px;
+    min-width: 500px;
 
   }
 
