@@ -8,10 +8,13 @@ const footerGenres=footer.getElementsByClassName('footer-genres')[0]
 const footerSales=footer.getElementsByClassName('footer-sales')[0]
 const login=footerDafdef.children[1]
 
-const modalBackground=document.getElementsByClassName('modal')
-const loginModal=document.querySelector('#login-modal')
-const loginForm=loginModal.getElementsByTagName('form')[0]
-const signupModal=document.querySelector('#signup-modal')
+const modalBackground=document.getElementsByClassName('modal')[0]
+const signupForm=modalBackground.children[0]
+const loginForm=modalBackground.children[1]
+
+const switchToSignUpBtn=document.querySelector('#switch-to-signup')
+const switchToLoginBtn=document.querySelector('#switch-to-login')
+
 
 
 
@@ -48,23 +51,72 @@ const renderImages=(url)=>{
     
 }
 
-
+const closeModal=()=>{
+    closeLoginModal()
+    closeSignupModal()
+}
 const openLoginModal=()=>{
-    loginModal.classList.remove('display-none')
+    modalBackground.classList.remove('display-none')
+    // loginForm.style.transform='translateX(300px)'
+    loginForm.classList.remove('display-none')
 }
 
 const closeLoginModal=()=>{
-    loginModal.classList.add('display-none')
+    modalBackground.classList.add('display-none')
+
+    loginForm.classList.add('display-none')
 }
 
+const openSignupModal=()=>{
+    modalBackground.classList.remove('display-none')
 
-console.log(modalBackground[0])
+    signupForm.classList.remove('display-none')
+   
+}
+const closeSignupModal=()=>{
+    modalBackground.classList.add('display-none')
+    signupForm.classList.add('display-none')
+   
+}
+
+const openLoginForm=()=>{
+    // loginForm.style.transform='translateX(250px)'
+    loginForm.classList.remove('display-none')
+}
+const closeLoginForm=()=>{
+    loginForm.classList.add('display-none')
+}
+const openSignupForm=()=>{
+    signupForm.classList.remove('display-none')
+}
+const closeSignupForm=()=>{
+    signupForm.classList.add('display-none')
+
+}
+
+const swichToLogin=()=>{
+    openLoginForm()
+    closeSignupForm()
+}
+const swichToSignup=()=>{
+    openSignupForm()
+    closeLoginForm()
+}
+
+switchToSignUpBtn.addEventListener('click', swichToSignup)
+switchToLoginBtn.addEventListener('click',swichToLogin)
+
+
+
+
 login.addEventListener('click',openLoginModal)
 window.onclick = (event)=> {
-    console.log(event.target)
-    if (event.target === loginModal)
-        closeLoginModal()
+    if (event.target===modalBackground|| event.target.className==="fas fa-times")
+        closeModal()
   }
+
+
+
 
 
 const signUpUser=(userData)=>{
