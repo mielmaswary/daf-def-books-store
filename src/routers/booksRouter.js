@@ -18,11 +18,12 @@ router.get('/books/get-all', async (req,res)=>{
     }
 })
 
-router.get('/books/get', async (req,res)=>{
-
+router.get('/books/get/:id', async (req,res)=>{
+   const bookId=req.params.id;
+   console.log(bookId)
     try{
-       const books=await Book.find(req.body)
-       if(books.length===0)
+       const books=await Book.findById(bookId)
+       if(!books)
        {
            res.status(404).send({'message':'no books to display'})
        }

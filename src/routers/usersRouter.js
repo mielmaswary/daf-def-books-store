@@ -11,10 +11,7 @@ router.post("/users/add", async (req, res) => {
 		const token = await user.generateAuthToken();
 		res.send({ user,token });
 	} catch (err) {
-		res.status(400).send({
-			status: 400,
-			message: err.message,
-		});
+		res.status(400).send({message:'invalid user ditails'});
 	}
 });
 

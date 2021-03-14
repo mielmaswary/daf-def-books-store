@@ -7,9 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-
-
-
     <title>Document</title>
 </head>
 <body>
@@ -85,13 +82,12 @@
     <form class="display-none" action="">
         <i class="fas fa-times"></i>
         <div class="modal-title">יצירת חשבון חדש</div>
-        <input type="text" placeholder="שם">
-        <input type="number" placeholder="גיל">
-        <input type="email" placeholder="כתובת אימייל">
-        <input type="password" placeholder="סיסמא">
-        <button>הרשמה</button>
+        <input type="text" name="name" placeholder="שם">
+        <input type="text" name="age" placeholder="גיל">
+        <input type="email" name="email" placeholder="כתובת אימייל">
+        <input type="password" name="password" placeholder="סיסמא">
+        <button class="disableSubmit">הרשמה</button>
         <div id='switch-to-login' class="switch-title">כבר יש לך חשבון?</div>
-
     </form>
 
     <form class="display-none" action="">
@@ -99,9 +95,40 @@
         <div class="modal-title">התחברות</div>
         <input type="email" placeholder="כתובת אימייל">
         <input type="password" placeholder="סיסמא">
-        <button>התחברות</button>
+        <button class="disableSubmit">התחברות</button>
         <div id='switch-to-signup' class="switch-title">עדיין אין לך חשבון?</div>
     </form>
+</div>
+<div class="modal display-none">
+    <div class="book-info-modal">
+        <div class="book-purchase">
+            <div class="book-name"></div>
+            <div class="author-name"></div>
+            <div class="info-img"></div>
+          
+        </div>
+       
+        <div class="book-info-text">
+            
+            <div class="summery">
+                <h3 class="headline">תקציר הספר:</h3>
+                <p>"יש אי נוחות בשימוש במלה הזאת, יש בה כעין הודאה בחולשה. האם האחרים חשים כמוני, או שאני בעלת מיתר קרוע?"
+                    כך נפתח ספרה החדש של נורית זרחי בדידות או, ויש בו אכן טקסטים על בדידות, וגם על שפע של נושאים שמעסיקים את הסופרת הנפלאה הזאת, כמו בתים וכלבים וציפורים וגינות, והקיבוץ והציונות והאב והאם והאח והאחות, וגם שייקספיר והמלך ליר שלו, אבל לא הוא, אלא בנותיו: 
+                    "התבוננותי בשייקספיר," כותבת נורית זרחי בצניעות אופיינית, "מובן שאיננה מקיפה אפילו לא קמצוץ מן העניין. 
+                </p>
+                <p class="pages-number"></p>
+                <P class="genre"></P>
+            </div>
+           
+        </div>
+        <div class="add-to-cart">
+            <div class="info-price"></div>
+            <div class="cart-icon">
+                <i class="fas fa-cart-plus"></i>
+            </div>
+        </div>
+      
+    </div>
 </div>
 
 
@@ -146,10 +173,12 @@
     </div>
     <div class="credits"></div>
 </div>  
-    <script type="module"  src="./main.js"></script>
 
     <script src="https://kit.fontawesome.com/6391380adf.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  
+    <script type="module"  src="./main.js"></script>
 
+ 
 </body>
 </html>
