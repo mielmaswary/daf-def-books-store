@@ -1,0 +1,35 @@
+#genres{
+    height:12vw;
+    width: 60%;
+    margin:20px auto;
+    @media(max-width:800px){
+      height:19vw;
+      margin:0 auto;
+      width: 65%;
+    }
+    @media(max-width:500px){
+      height:22vw;
+    }
+    div{
+      min-width: 100px;
+      height: 100%;
+      margin-right: 10px;
+      // counter-increment: gallery-cell;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      justify-content: center;
+      @media(max-width:800px) {
+      }
+      @media(max-width:500px){
+        min-width: 50px;
+      }
+      p{
+        font-size: 15px;
+        transform: translateY(2px);
+      }
+    }
+  }

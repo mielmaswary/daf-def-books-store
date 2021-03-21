@@ -45,9 +45,9 @@ const userSchema = new mongoose.Schema(
 				token: {
 					type: String,
 					required: true,
-				},
-			},
-		],
+				}
+			}
+		]
 	},
 	{
 		timestamps: true,
@@ -90,22 +90,23 @@ userSchema.methods.generateAuthToken = async function () {
 			expiresIn: "6h",
 		}
 	);
-
 	user.tokens = user.tokens.concat({ token });
+	console.log(user.tokens)
+
 	await user.save();
 
 	return token;
 };
 
-userSchema.methods.toJSON = function () {
-	const user = this;
-	const userObj = user.toObject();
+// userSchema.methods.toJSON = function () {
+// 	const user = this;
+// 	const userObj = user.toObject();
 
-	delete userObj.password;
-	delete userObj.tokens;
+// 	delete userObj.password;
+// 	delete userObj.tokens;
 
-	return userObj;
-};
+// 	return userObj;
+// };
 
 userSchema.virtual("tasks", {
 	ref: "Task",
@@ -123,3 +124,4 @@ userSchema.pre("remove", async function (next) {
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
+

@@ -112,6 +112,24 @@ const addUserToDB=(userData)=>{
        })
 }
 
+const loginUser=(userLoginData)=>{
+    const data=userLoginData
+
+    fetch('http://localhost:3000/users/login', {
+        method: 'POST', 
+        headers: {
+           'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+        })
+        .then(()=>{
+            alert(`${data.email} has loged in!`)
+            
+        }).catch((err)=>{
+            alert(err)
+        })
+    }
+
 const logout=()=>{
 
 }
@@ -135,26 +153,28 @@ const refreshFormsInputs =()=>{
 }
 const openLoginModal=()=>{
     modalBackground.classList.remove('display-none')
-    loginForm.style.transform='translateX(60%)'
+    if(!window.matchMedia("(max-width: 500px)"))
+        loginForm.style.transform='translateX(60%)'
     loginForm.classList.remove('display-none')
 }
 
 const closeLoginModal=()=>{
     modalBackground.classList.add('display-none')
-    loginForm.style.transform='translateX(-60%)'
+    if(!window.matchMedia("(max-width: 500px)"))
+        loginForm.style.transform='translateX(-60%)'
     loginForm.classList.add('display-none')
 }
 
 const openSignupModal=()=>{
     modalBackground.classList.remove('display-none')
-    signupForm.style.transform='translateX(-50%)'
-
+    if(!window.matchMedia("(max-width: 500px)"))
+        signupForm.style.transform='translateX(-50%)'
     signupForm.classList.remove('display-none')
 }
 const closeSignupModal=()=>{
     modalBackground.classList.add('display-none')
-    signupForm.style.transform='translateX(50%)'
-
+    if(!window.matchMedia("(max-width: 500px)"))
+        signupForm.style.transform='translateX(50%)'
     signupForm.classList.add('display-none')
    
 }
@@ -163,21 +183,23 @@ const closeBooksModal=()=>{
 }
 
 const openLoginForm=()=>{
-    loginForm.style.transform='translateX(60%)'
+    if(!window.matchMedia("(max-width: 500px)"))
+         loginForm.style.transform='translateX(60%)'
     loginForm.classList.remove('display-none')
 }
 const closeLoginForm=()=>{
-    loginForm.style.transform='translateX(-60%)'
-
+    if(!window.matchMedia("(max-width: 500px)"))
+         loginForm.style.transform='translateX(-60%)'
     loginForm.classList.add('display-none')
 }
 const openSignupForm=()=>{
-    signupForm.style.transform='translateX(-50%)'
+    if(!window.matchMedia("(max-width: 500px)"))
+         signupForm.style.transform='translateX(-50%)'
     signupForm.classList.remove('display-none')
 }
 const closeSignupForm=()=>{
-    signupForm.style.transform='translateX(50%)'
-
+    if(!window.matchMedia("(max-width: 500px)"))
+         signupForm.style.transform='translateX(50%)'
     signupForm.classList.add('display-none')
 
 }
@@ -204,10 +226,8 @@ const isValidPassword=(password)=>{
 }
 
 const isValidForm=(form)=>{
-    if(form.age&&form.email&&form.password){
-        return isValidAge(form.age.value)&&
-        isValidEmail(form.email.value)&&
-        isValidPassword(form.password.value)
+    if(form.email&&form.password){
+        return  isValidEmail(form.email.value)&&isValidPassword(form.password.value)
     }
     else{
         return false
@@ -215,6 +235,15 @@ const isValidForm=(form)=>{
    
 }
 
+// const rslides=()=>{
+//     let slides=document.getElementsByClassName('rslides')[0]
+//     slides.responsiveSlides()
+//  }
+//  rslides()
+
+// //  $(function() {
+// //     $(".rslides").responsiveSlides();
+// //   });
 
 
 
@@ -243,7 +272,8 @@ for (let event of events){
             if(isValidForm(form)){
                 form.querySelector('button').classList.remove('disableSubmit')
                 form.querySelector('button').classList.add('enableSubmit')
-                form.disabled=false
+                signupFormBtn.disabled=false
+
             }
             else{
              form.querySelector('button').classList.add('disableSubmit')
@@ -272,10 +302,7 @@ signupForm.age.addEventListener('blur', ()=>{
         signupForm.age.value='הרשמה אפשרית מעל גיל 12...'
     }
  })
-//  signupForm.email.addEventListener('blur', ()=>{
-//    if(!validator.isValidEmail(signupForm.email))
-//        signupForm.email.value='נא להזין כתובת מייל תקינה'
-//  })
+
 
  //focus
  for(let child of signupForm){
@@ -296,9 +323,20 @@ signupForm.addEventListener('submit',(event)=>{
         email:signupForm.email.value,
         password:signupForm.password.value
     }
+
+    addUserToDB(userData)
         
 })
 
+
+loginForm.addEventListener('submit',(event)=>{
+    event.getPreventDefault
+    const userLoginData={
+        email:loginForm.email.value,
+        password:loginForm.password.value
+    }
+    loginUser(userLoginData)
+})
 
 for (let book of books)
 {
@@ -313,5 +351,5 @@ for (let book of books)
 
 ///////on load
 signupFormBtn.disabled=true
-loginFormBtn.disabled=true
+// loginFormBtn.disabled=true
 renderImages()

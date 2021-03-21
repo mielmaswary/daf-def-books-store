@@ -1,0 +1,144 @@
+
+ .modal{
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(29, 26, 26, 0.829);
+    filter: blur();
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    z-index: 3;
+    transition: opacity 0.1s ease-in-out;
+     @media(max-width:500px){
+     }
+    form{
+      display: flex;
+      width: 40%;
+      height: 70%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(255, 255, 255);
+      border-radius: 4px;
+      padding: 5px;
+      transition:transform 0.2s, opacity 0.4s ease-in-out;
+      position: relative;
+      @media (max-width:500px){
+         width: 95vw;
+         height: 80vh;
+        position: fixed;
+        transform: translateX(8px);
+      }
+   
+      .fa-times{
+       font-size:35px;
+       color: rgb(163, 157, 157);
+       position: absolute;
+       top: 8px;
+       left: 8px;
+       opacity: 80%;
+      }
+      :hover{
+        opacity: 1;
+      }
+ 
+      .modal-title{
+        padding: 8px;
+        font-size: 30px;
+        text-align: center;
+        color:#333333
+      }
+      input,button{
+        width: 60%;
+        padding: 15px;
+        margin: 2px;
+        border-radius: 4px;
+        border:solid #dfd7d7 1px;
+        
+      }
+      button{
+        font-size: 20px;
+        color: #ffffff;
+        box-shadow: 1px 1px 5px #333333;
+      
+      }
+      .enableSubmit{
+         background-color:#f25;
+      }
+      .disableSubmit{
+         background-color:rgb(235, 160, 177);
+      }
+ 
+      .warning{
+        color:red;
+      }
+     
+    }
+    .switch-title{
+      font-size: 18px;
+      padding: 15x;
+    }
+  }
+
+
+  @media (max-width:800px){
+    .modal{
+      form{
+      
+        .modal-title{
+            margin-top: 15px ;
+        }
+        input,button{
+          width: 80%;
+  
+        }
+     
+      }
+    .switch-title{
+      font-size: 18px;
+      padding: 15x;
+    }
+  }
+    .modal{
+      .book-info-modal{
+        height: 95%;
+        flex-direction: column;
+        .book-purchase{
+           width: 90%;
+           padding: 0;
+           flex: 1;
+           .book-name{
+             font-size: 20px;
+            }
+            .author-name{
+             font-size: 12px;
+            }
+           .info-img{
+             width: 70%;
+             height:70%;
+             margin: auto;
+           }
+        }
+        .book-info-text{
+          margin: 0;
+          padding: 9px;
+          flex: 1.5;
+          transform:translateX(0);
+          .summery{
+            height: auto;
+            p{
+              font-size: 13px;
+              line-height: 16px;
+            }
+
+          }
+        }
+        .add-to-cart{
+          height: 12%;
+        }
+       
+      }
+  }
+  }

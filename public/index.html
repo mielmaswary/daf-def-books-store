@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  
     <title>Document</title>
 </head>
 <body>
@@ -23,60 +24,67 @@
             <i class="fas fa-bars"></i>
         </div>
     </div>
-
-    <div id="main" class="gallery large js-flickity" data-flickity-options='{
+  
+    <div id="main" class="js-flickity" data-flickity-options='{
          "wrapAround": true,
          "autoPlay": true,
          "selectedAttraction": 0.1,
          "friction": 0.3 }'>
-         <div class="gallery-cell large-cells banner1"></div>
-         <div class="gallery-cell large-cells banner2"></div>
-         <div class="gallery-cell large-cells banner3"></div>
-         <div class="gallery-cell large-cells banner4"></div>
+         <div class="banner banner1"></div>
+         <div class="banner banner2"></div>
+         <div class="banner banner3"></div>
+         <div class="banner banner4"></div>
          
    </div>
 
-   <div id="genres" class="gallery small js-flickity" data-flickity-options='{ "wrapAround": true }'>
-        <div class="gallery-cell proseImg"><p>פרוזה</p> </div>
-        <div class="gallery-cell romanceImg"><p>רומן</p></div>
-        <div class="gallery-cell historyImg"><p>היסטוריה</p></div>
-        <div class="gallery-cell thrillerImg"><p>מתח</p></div>
-        <div class="gallery-cell kidsImg"><p>ילדים</p></div>
-        <div class="gallery-cell jewImg"><p>יהדות</p></div>
-        <div class="gallery-cell biographyImg"><p>ביוגרפיה</p></div>
+   <div id="genres" class="gallery js-flickity" data-flickity-options='{ "wrapAround": true }'>
+        <div class="proseImg"><p>פרוזה</p> </div>
+        <div class="romanceImg"><p>רומן</p></div>
+        <div class="historyImg"><p>היסטוריה</p></div>
+        <div class="thrillerImg"><p>מתח</p></div>
+        <div class="kidsImg"><p>ילדים</p></div>
+        <div class="jewImg"><p>יהדות</p></div>
+        <div class="biographyImg"><p>ביוגרפיה</p></div>
+        <div class="kidsImg"><p>ילדים</p></div>
+        <div class="historyImg"><p>היסטוריה</p></div>
 
-  </div>  
-  <div class="section-title">המומלצים שלנו</div>
-   <div id="recommendeds" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
-       <div class="gallery-cell"></div>
-       <div class="gallery-cell"></div>
-       <div class="gallery-cell"></div>
-       <div class="gallery-cell"></div>
-       <div class="gallery-cell"></div>
-       <div class="gallery-cell"></div>
-  </div>  
-  <div class="section-title">ספרים במבצע</div>
-
-   <div id="sales" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-        <div class="gallery-cell"></div>
-
+  </div> 
+  
+  <div class="gallery-container">
+    <div class="section-title">המומלצים שלנו</div>
+    <div id="recommendeds" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
+         <div class="gallery-cell"></div>
+         <div class="gallery-cell"></div>
+         <div class="gallery-cell"></div>
+         <div class="gallery-cell"></div>
+         <div class="gallery-cell"></div>
+         <div class="gallery-cell"></div>
+    </div>  
   </div>
-  <div class="section-title">ספרים חדשים</div>
 
-  <div id="new-books" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
-    <div class="gallery-cell"></div>
-    <div class="gallery-cell"></div>
-    <div class="gallery-cell"></div>
-    <div class="gallery-cell"></div>
-    <div class="gallery-cell"></div>
-    <div class="gallery-cell"></div>
+  <div class="gallery-container">
+      <div class="section-title">ספרים במבצע</div> 
+      <div id="sales" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
+           <div class="gallery-cell"></div>
+           <div class="gallery-cell"></div>
+           <div class="gallery-cell"></div>
+           <div class="gallery-cell"></div>
+           <div class="gallery-cell"></div>
+           <div class="gallery-cell"></div>
+     </div>
+  </div>
 
-</div>
+  <div class="gallery-container">
+      <div class="section-title">ספרים חדשים</div>
+      <div id="new-books" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+        <div class="gallery-cell"></div>
+    </div>
+ </div>
 
 <div class="modal display-none">
     <form class="display-none" action="">
@@ -93,8 +101,8 @@
     <form class="display-none" action="">
         <i class="fas fa-times"></i>
         <div class="modal-title">התחברות</div>
-        <input type="email" placeholder="כתובת אימייל">
-        <input type="password" placeholder="סיסמא">
+        <input type="email" name="email" placeholder="כתובת אימייל">
+        <input type="password" name="password" placeholder="סיסמא">
         <button class="disableSubmit">התחברות</button>
         <div id='switch-to-signup' class="switch-title">עדיין אין לך חשבון?</div>
     </form>
@@ -178,7 +186,6 @@
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
   
     <script type="module"  src="./main.js"></script>
-
  
 </body>
 </html>

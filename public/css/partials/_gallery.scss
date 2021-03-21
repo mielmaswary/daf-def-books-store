@@ -1,0 +1,56 @@
+.gallery-container{
+    height: 350px;
+    width: 80%;
+    margin:35px auto;
+    @media(max-width:800px){
+      height: 250px;
+      width: 95%;
+    }
+    @media(max-width:500px){
+      height: 160px;
+    }
+    .section-title{
+      width: 80vw;
+      border-top: solid #dfd7d7 1px;
+      font-size: 30px;
+      padding: 10px;
+      @media(max-width:800px){
+        font-size: 25px;
+      }
+      @media(max-width:500px){
+        font-size: 20px;
+      }
+    }
+    .gallery.mid{
+      height: 98%;
+     
+      .gallery-cell {
+       min-width: 200px;
+       height: 95%;
+       // counter-increment: gallery-cell;
+       background-repeat: no-repeat;
+       background-position-x: center;
+       background-size: contain;
+       display: flex;
+       justify-content: center;
+       align-items: flex-end;
+       margin: 0 5px;
+       @media(max-width:800px){
+        min-width: 140px;
+       }
+       @media(max-width:500px){
+        min-width: 100px;
+       }
+       p{
+         font-size: 20px;
+         transform: translateY(3px);
+       }
+     }
+    }
+  }
+  // .gallery-book-info{
+  //   width: 100%;
+  //   padding: 5px;
+  //   background-color: #525050;
+  // }
+  

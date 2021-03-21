@@ -4,6 +4,8 @@ const auth = require("../middleware/auth");
 const User = require('../models/userModel')
 const router=new express.Router()
 
+
+
 router.post("/users/add", async (req, res) => {
 	const user = new User(req.body);
 	try {
@@ -14,6 +16,22 @@ router.post("/users/add", async (req, res) => {
 		res.status(400).send({message:'invalid user ditails'});
 	}
 });
+
+router.post("/users/new", async (req, res) => {
+	const user = new User(req.body);
+	try {
+		await user.save();
+		const token = await user.generateAuthToken();
+		res.send({ user, token });
+	} catch (err) {
+		res.status(400).send({
+			status: 400,
+			message: err.message,
+		});
+	}
+});
+
+
 
 router.post("/users/login", async (req, res) => {
 	try {
