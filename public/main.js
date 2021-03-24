@@ -4,6 +4,7 @@ const utilsContainer=document.getElementsByClassName('utils-container')[0]
 const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
 const headerCartBtn=utilsContainer.getElementsByClassName('fa-shopping-cart')[0]
 const headerMenuBtn=utilsContainer.getElementsByClassName('fa-bars')[0]
+const mainSearchForm=document.getElementsByClassName('main-search')[0]
 
 
 
@@ -24,7 +25,7 @@ const switchToLoginBtn=document.querySelector('#switch-to-login')
 const loginFormBtn=loginForm.getElementsByTagName('button')[0]
 const signupFormBtn=signupForm.getElementsByTagName('button')[0]
 
-//books modals
+//books info modals
 const booksInfoModal=document.getElementsByClassName('modal')[1]
 const booksInfoBookName=document.getElementsByClassName('book-name')[0]
 const booksInfoAuthorName=document.getElementsByClassName('author-name')[0]
@@ -34,6 +35,13 @@ const booksInfoBookSummery=document.getElementsByClassName('summery')[0].querySe
 const booksInfoBookPages=document.getElementsByClassName('summery')[0].querySelectorAll('p')[1]
 const booksInfoBookGenre=document.getElementsByClassName('summery')[0].querySelectorAll('p')[2]
 const books=document.getElementsByClassName('gallery-cell')
+
+
+//books search modals
+const halfModal=document.getElementsByClassName('half-modal')[0]
+const booksSearchModal=halfModal.getElementsByClassName('books-search-modal')[0]
+const searchedBooksContainer=document.querySelector('#searched-books');
+const booksSearchTitle=halfModal.getElementsByClassName('section-title')[0]
 ///////////////////server functions////////////////////
 
 const renderImages=()=>{
@@ -92,6 +100,36 @@ const renderBookInfo=(book)=>{
         booksInfoBookPages.innerHTML= `מספר עמודים: ${jsonObj.pagesNum} `;
         booksInfoBookGenre.innerHTML=`ז'אנר: ${jsonObj.genres} `;
     })
+}
+
+
+const renderBooksImagesBySearch=(searchValue)=>{
+    const url=`http://localhost:3000/books/${searchValue}`
+
+    fetch(url).then((res)=>{
+        if(res.ok){
+           return res.json()
+        }
+        else{
+            throw new Error(res.status)
+        }
+    }).then((jsonObj)=>{
+       const seachedBooksUrl=jsonObj.map(img=>img.imageUrl)
+       const searchedBooksId=jsonObj.map(img=>img._id)
+    //    const searchedBooks=searchedBooksContainer.getElementsByClassName('gallery-cell')
+       booksSearchTitle.innerHTML=seachedBooksUrl.length>0?'הנה ספרים שמתאימים לחיפוש שלך...':'לא מצאנו ספרים שמתאימים לחיפוש שלך...'
+       for(let div of searchedBooksContainer.children){
+           searchedBooksContainer.removelasChild(div)
+       }
+       for(let i=0;i<seachedBooksUrl.length;i++){
+           const galleryCell=document.createElement('div')
+           galleryCell.className='book'
+           searchedBooksContainer.appendChild(galleryCell)
+           galleryCell.style.backgroundImage=`url(${seachedBooksUrl[i]})`
+           galleryCell.id=searchedBooksId[i] 
+       }
+    })
+    
 }
 
 
@@ -249,6 +287,25 @@ const isValidForm=(form)=>{
 
 //////////////////eventListeners//////////////////
 
+mainSearchForm.addEventListener('click',()=>{
+   
+    
+})
+
+mainSearchForm.addEventListener("keyup",()=>{
+    halfModal.classList.remove('display-none')
+    let searchValue=mainSearchForm.value.trim()
+    if(searchValue==='')
+        searchValue='emptyValue'
+    renderBooksImagesBySearch(searchValue)
+})
+
+window.addEventListener('scroll',()=>{
+    halfModal.classList.add('display-none')
+    mainSearchForm.value=''
+})
+
+
 switchToSignUpBtn.addEventListener('click', swichToSignup)
 switchToLoginBtn.addEventListener('click',swichToLogin)
 
@@ -348,6 +405,9 @@ for (let book of books)
         }, 400);
     })
 }
+
+
+
 
 ///////on load
 signupFormBtn.disabled=true

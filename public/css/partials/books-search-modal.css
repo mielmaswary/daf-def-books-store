@@ -1,0 +1,28 @@
+.half-modal {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(29, 26, 26, 0.829);
+  -webkit-filter: blur();
+          filter: blur();
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  -webkit-transition: opacity 0.1s ease-in-out;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.half-modal .books-search-modal {
+  width: 200px;
+  height: 200px;
+  background-color: #ffffff;
+}
+/*# sourceMappingURL=books-search-modal.css.map */

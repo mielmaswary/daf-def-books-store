@@ -10,11 +10,28 @@
     .flickity-button.flickity-prev-next-button{
        display: none;
      }
+
+     transition: opacity 0.2s ease-in-out;
+
 }
 
 .display-none{
   //  transform: translateX(300px);
    opacity:0;
    z-index: -1;
+ }
+
+
+ //close button
+ .fa-times{
+  font-size:35px;
+  color: rgb(163, 157, 157);
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  opacity: 80%;
+ }
+ :hover{
+   opacity: 1;
  }
 

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AACI,MADE,CACF,kBAAkB,CAAA;EACd,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,GAAG;EACX,gBAAgB,EAAE,OAAO;CAC5B",
+    "sources": [
+        "books-serch-modal.scss"
+    ],
+    "names": [],
+    "file": "books-serch-modal.css"
+}

@@ -1,0 +1,43 @@
+.half-modal{
+    width: 100%;
+    height:85vh;
+    background-color:rgba(29, 26, 26, 0.829);
+    filter: blur();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 16vh;
+    z-index: 3;
+    transition: opacity 0.1s ease-in-out;
+    border-radius: 0;
+    .books-search-modal{
+        width: 80%;
+        height: 90%;
+        margin: auto;
+        background-color: #ffffff;
+        // position: relative;
+      
+        .searched-books{
+            width: 90%;
+            height: 70%;
+            display: flex;
+            flex-wrap: wrap;
+            .section-title{
+                border: none;
+                @media(max-width: 800px){
+                    font-size:16px;
+                }
+                @media(max-width: 500px){
+                    font-size:13px;
+                }
+            }
+    
+            .book{
+               width: 30%;
+               height: 90%;
+            }
+        }
+       
+    }
+}

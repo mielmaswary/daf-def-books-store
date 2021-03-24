@@ -33,7 +33,23 @@ router.get('/books/get/:id', async (req,res)=>{
     }
 })
 
+router.get('/books/:searchValue', async (req,res)=>{
+    const searchValue=req.params.searchValue;
+    const regex = new RegExp(searchValue, 'i') // i for case insensitive
+     try{
 
+        const booksByBookName=await Book.find({bookName: {$regex: regex}})
+        const booksByAuthorName=await Book.find({authorName: {$regex: regex}})
+        books=booksByBookName.concat(booksByAuthorName)
+        if(!books)
+        {
+            res.status(404).send({'message':'no books to display'})
+        }
+        res.send(books)
+     }catch(err){
+        res.status(400).send(err.message)
+     }
+ })
 
 
 router.post('/books/add',async (req,res)=>{

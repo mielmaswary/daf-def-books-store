@@ -16,7 +16,7 @@
             <h1><span>ד</span>פדף</h1>
             <h3>ספרים שקוראים אנשים</h3>
         </div>
-        <input class="main-search" placeholder="חיפוש לפי שם ספר, נושא או מחבר"></input>
+        <input class="main-search" placeholder="חיפוש לפי שם ספר או מחבר"></input>
         <div class="utils-container">
             <i class="far fa-user"></i>
             <i class="far fa-heart"></i>
@@ -109,11 +109,10 @@
 </div>
 <div class="modal display-none">
     <div class="book-info-modal">
-        <div class="book-purchase">
+        <div class="book-title">
             <div class="book-name"></div>
             <div class="author-name"></div>
-            <div class="info-img"></div>
-          
+            <div class="info-img"></div> 
         </div>
        
         <div class="book-info-text">
@@ -140,19 +139,37 @@
 </div>
 
 
+<div class="half-modal display-none">
+    <div class="books-search-modal">
+        <div class="gallery-container">
+            <i class="fas fa-times"></i>
+            <div class="section-title">לא מצאנו ספרים שמתאימים לחיפוש...</div> 
+            <div id="searched-books" class="searched-books" >
+                 <!-- <div class="gallery-cell"></div>
+                 <div class="gallery-cell"></div>
+                 <div class="gallery-cell"></div>
+                 <div class="gallery-cell"></div>
+                 <div class="gallery-cell"></div>
+                 <div class="gallery-cell"></div> -->
+           </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 <div id="footer">
     <div class="footer-element footer-contact">
         <h4>תהיו בקשר...</h4>
-        <a>1111111111111</a>
-        <a>1111111111111</a>
-        <a>1111111111111</a>
-        <a>1111111111111</a>
-        <a>1111111111111</a>
-        <a>1111111111111</a>
-
+        <a>info@dafdef.com</a>
+        <a>1800-654-321</a>
+        <div class="social">
+            <div class="social-element facebook"></div>
+            <div class="social-element instegram"></div>
+        </div>
         
+
     </div>
     <div class="footer-element footer-daf-def">
         <h4>דפדף</h4>
@@ -179,8 +196,9 @@
         <a>מבצע חבר</a>
     
     </div>
-    <div class="credits"></div>
+    
 </div>  
+<div class="credits"></div>
 
     <script src="https://kit.fontawesome.com/6391380adf.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
