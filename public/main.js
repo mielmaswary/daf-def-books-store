@@ -5,7 +5,9 @@ const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
 const headerCartBtn=utilsContainer.getElementsByClassName('fa-shopping-cart')[0]
 const headerMenuBtn=utilsContainer.getElementsByClassName('fa-bars')[0]
 const mainSearchForm=document.getElementsByClassName('main-search')[0]
-
+const userLoggedinTools=document.getElementsByClassName('user-loggedin-tools')[0]
+const headerUserName=userLoggedinTools.getElementsByClassName('user-name')[0]
+const headerLogoutBtn=userLoggedinTools.getElementsByClassName('user-logout')[0]
 
 
 const recommendedsContainer =document.querySelector('#recommendeds')
@@ -24,6 +26,10 @@ const switchToSignUpBtn=document.querySelector('#switch-to-signup')
 const switchToLoginBtn=document.querySelector('#switch-to-login')
 const loginFormBtn=loginForm.getElementsByTagName('button')[0]
 const signupFormBtn=signupForm.getElementsByTagName('button')[0]
+const loginErrorMsg=document.getElementById('login-error-msg')
+const signUpErrorMsg=document.getElementById('sign-error-msg')
+let token=''
+
 
 //books info modals
 const booksInfoModal=document.getElementsByClassName('modal')[1]
@@ -40,7 +46,7 @@ const books=document.getElementsByClassName('gallery-cell')
 //books search modals
 const halfModal=document.getElementsByClassName('half-modal')[0]
 const booksSearchModal=halfModal.getElementsByClassName('books-search-modal')[0]
-const searchedBooksContainer=document.querySelector('#searched-books');
+const searchedBooksContainer=document.querySelector('#searched-books-container');
 const booksSearchTitle=halfModal.getElementsByClassName('section-title')[0]
 ///////////////////server functions////////////////////
 
@@ -118,9 +124,12 @@ const renderBooksImagesBySearch=(searchValue)=>{
        const searchedBooksId=jsonObj.map(img=>img._id)
     //    const searchedBooks=searchedBooksContainer.getElementsByClassName('gallery-cell')
        booksSearchTitle.innerHTML=seachedBooksUrl.length>0?'הנה ספרים שמתאימים לחיפוש שלך...':'לא מצאנו ספרים שמתאימים לחיפוש שלך...'
-       for(let div of searchedBooksContainer.children){
-           searchedBooksContainer.removelasChild(div)
-       }
+    //    for(let div of searchedBooksContainer.children){
+    //        searchedBooksContainer.removeChild(div)
+    //    }
+       while(searchedBooksContainer.children.length>0){
+           searchedBooksContainer.removeChild(searchedBooksContainer.lastChild)
+        }
        for(let i=0;i<seachedBooksUrl.length;i++){
            const galleryCell=document.createElement('div')
            galleryCell.className='book'
@@ -132,43 +141,60 @@ const renderBooksImagesBySearch=(searchValue)=>{
     
 }
 
-
 const addUserToDB=(userData)=>{
-    const data=userData
 
    fetch('http://localhost:3000/users/add', {
        method: 'POST', 
        headers: {
           'Content-Type': 'application/json',
        },
-       body: JSON.stringify(data),
+       body: JSON.stringify(userData),
        })
-       .then(()=>{
-           console.log('ok')
+       .then(data=>{
+           console.log('sucsses!',data)
        }).catch((err)=>{
            alert(err)
        })
 }
 
-const loginUser=(userLoginData)=>{
-    const data=userLoginData
-
-    fetch('http://localhost:3000/users/login', {
+const loginUser= async (userLoginData)=>{
+    const userData=userLoginData
+    const options={
         method: 'POST', 
         headers: {
            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
-        })
-        .then(()=>{
-            alert(`${data.email} has loged in!`)
-            
-        }).catch((err)=>{
-            alert(err)
-        })
+        body: JSON.stringify(userData)
     }
-
+   fetch('http://localhost:3000/users/login',options)
+   .then(response => response.json())
+   .then(data => {
+    if(data.user){
+        headerUserName.innerHTML=`שלום, ${data.user.name}`
+        headerLogoutBtn.innerHTML='התנתקות'
+        userLoggedinTools.classList.remove('display-none')
+        token=data.token
+        closeModal()
+    }
+    else{
+        showLoginErrorMsg('נראה שלא הצלחת להתחבר...<br> אולי הסיסמא או המייל לא נכונים?')
+     }
+   })
+   
+}
 const logout=()=>{
+    const options={
+        method: 'POST', 
+        headers: {
+           'Authorization': `Bearer ${token},`,
+        }
+    }
+   fetch('http://localhost:3000/users/logout',options)
+   .then(response => response.json())
+   .then(data => {
+       console.log(data)
+       userLoggedinTools.classList.add('display-none')
+    })
 
 }
 
@@ -191,27 +217,29 @@ const refreshFormsInputs =()=>{
 }
 const openLoginModal=()=>{
     modalBackground.classList.remove('display-none')
-    if(!window.matchMedia("(max-width: 500px)"))
+    loginErrorMsg.classList.add('display-none')
+    signUpErrorMsg.classList.add('display-none')
+    if(!window.matchMedia("(max-width: 800px)").matches)
         loginForm.style.transform='translateX(60%)'
     loginForm.classList.remove('display-none')
 }
 
 const closeLoginModal=()=>{
     modalBackground.classList.add('display-none')
-    if(!window.matchMedia("(max-width: 500px)"))
+    if(!window.matchMedia("(max-width: 800px)").matches)
         loginForm.style.transform='translateX(-60%)'
     loginForm.classList.add('display-none')
 }
 
 const openSignupModal=()=>{
     modalBackground.classList.remove('display-none')
-    if(!window.matchMedia("(max-width: 500px)"))
+    if(!window.matchMedia("(max-width: 800px)").matches)
         signupForm.style.transform='translateX(-50%)'
     signupForm.classList.remove('display-none')
 }
 const closeSignupModal=()=>{
     modalBackground.classList.add('display-none')
-    if(!window.matchMedia("(max-width: 500px)"))
+    if(!window.matchMedia("(max-width: 800px)").matches)
         signupForm.style.transform='translateX(50%)'
     signupForm.classList.add('display-none')
    
@@ -221,22 +249,22 @@ const closeBooksModal=()=>{
 }
 
 const openLoginForm=()=>{
-    if(!window.matchMedia("(max-width: 500px)"))
+    if(!window.matchMedia("(max-width: 800px)").matches)
          loginForm.style.transform='translateX(60%)'
     loginForm.classList.remove('display-none')
 }
 const closeLoginForm=()=>{
-    if(!window.matchMedia("(max-width: 500px)"))
+    if(!window.matchMedia("(max-width: 800px)").matches)
          loginForm.style.transform='translateX(-60%)'
     loginForm.classList.add('display-none')
 }
 const openSignupForm=()=>{
-    if(!window.matchMedia("(max-width: 500px)"))
+    if(!window.matchMedia("(max-width: 800px)").matches)
          signupForm.style.transform='translateX(-50%)'
     signupForm.classList.remove('display-none')
 }
 const closeSignupForm=()=>{
-    if(!window.matchMedia("(max-width: 500px)"))
+    if(!window.matchMedia("(max-width: 800px)").matches)
          signupForm.style.transform='translateX(50%)'
     signupForm.classList.add('display-none')
 
@@ -273,6 +301,15 @@ const isValidForm=(form)=>{
    
 }
 
+const closeSearchBooksModal=()=>{
+    halfModal.classList.add('display-none')
+}
+
+const showLoginErrorMsg=(msg)=>{
+   loginErrorMsg.innerHTML=msg
+   loginErrorMsg.classList.remove('display-none')
+}
+
 // const rslides=()=>{
 //     let slides=document.getElementsByClassName('rslides')[0]
 //     slides.responsiveSlides()
@@ -289,20 +326,23 @@ const isValidForm=(form)=>{
 
 mainSearchForm.addEventListener('click',()=>{
    
-    
 })
 
-mainSearchForm.addEventListener("keyup",()=>{
-    halfModal.classList.remove('display-none')
+mainSearchForm.addEventListener("keyup",(event)=>{
     let searchValue=mainSearchForm.value.trim()
-    if(searchValue==='')
+    if(searchValue!=='' && event.key!=='Backspace')
+        halfModal.classList.remove('display-none')
+    else
         searchValue='emptyValue'
     renderBooksImagesBySearch(searchValue)
 })
 
 window.addEventListener('scroll',()=>{
-    halfModal.classList.add('display-none')
-    mainSearchForm.value=''
+    if(!window.matchMedia("(max-width: 500px)").matches){
+        // halfModal.classList.add('display-none')
+        // mainSearchForm.value=''
+    }
+  
 })
 
 
@@ -311,9 +351,12 @@ switchToLoginBtn.addEventListener('click',swichToLogin)
 
 
 headerLoginBtn.addEventListener('click',openLoginModal)
+headerLogoutBtn.addEventListener('click',logout)
+
 window.addEventListener('click' ,(event)=> {
     if (event.target===modalBackground|| event.target===booksInfoModal || event.target.className==="fas fa-times")
         closeModal()
+        closeSearchBooksModal()
   })
 
 loginForm.addEventListener('submit',(event)=>{
@@ -373,7 +416,9 @@ signupForm.age.addEventListener('blur', ()=>{
 
 
 signupForm.addEventListener('submit',(event)=>{
-    event.getPreventDefault
+    // event.getPreventDefault
+    event.preventDefault()
+
     const userData={
         name:signupForm.name.value,
         age:signupForm.age.value,
@@ -387,7 +432,7 @@ signupForm.addEventListener('submit',(event)=>{
 
 
 loginForm.addEventListener('submit',(event)=>{
-    event.getPreventDefault
+    event.preventDefault()
     const userLoginData={
         email:loginForm.email.value,
         password:loginForm.password.value
@@ -408,6 +453,30 @@ for (let book of books)
 
 
 
+//*************cart***************
+const cartModalBg=document.getElementById("cart-modal-bg")
+const cartModal=document.getElementsByClassName("cart-modal")[0]
+const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
+const payBtn=document.getElementsByClassName('pay-btn')[0]
+const cartMainIcon=document.getElementsByClassName('utils-container')[0].getElementsByClassName('fa-shopping-cart')[0]
+
+const openPurchasedBooksModal=()=>{
+    cartModal.classList.remove('display-none')
+    cartModalBg.classList.remove('display-none')
+}
+const closePurchasedBooksModal=()=>{
+    cartModal.classList.add('display-none')
+    cartModalBg.classList.add('display-none')
+}
+
+cartMainIcon.addEventListener('click',()=>{
+    openPurchasedBooksModal()
+})
+window.addEventListener('click',(event)=>{
+    if(event.target===cartModalBg || event.target.className==="fas fa-times" ){
+        closePurchasedBooksModal()
+    }
+})
 
 ///////on load
 signupFormBtn.disabled=true

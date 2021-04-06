@@ -35,13 +35,14 @@ router.post("/users/new", async (req, res) => {
 
 router.post("/users/login", async (req, res) => {
 	try {
-		const user = await User.findUserbyEmailAndPassword(req.body.email, req.body.password);
-		const token = await user.generateAuthToken();
-		res.send({ user, token });
+		 const user = await User.findUserbyEmailAndPassword(req.body.email, req.body.password);
+		 const token = await user.generateAuthToken();
+		 res.send({user,token})
+		
 	} catch (err) {
 		res.status(400).send({
 			status: 400,
-			message: err.message,
+			message: 'unable to login!',
 		});
 	}
 });
@@ -49,6 +50,16 @@ router.post("/users/login", async (req, res) => {
 router.post("/users/logout", auth, async (req, res) => {
 	try {
 		req.user.tokens = req.user.tokens.filter((tokenDoc) => tokenDoc.token !== req.token);
+		await req.user.save();
+		res.send(req.user.email);
+	} catch (err) {
+		res.status(500).send(err);
+	}
+});
+
+router.post("/users/logoutAll", auth, async (req, res) => {
+	try {
+		req.user.tokens = [];
 		await req.user.save();
 		res.send();
 	} catch (err) {

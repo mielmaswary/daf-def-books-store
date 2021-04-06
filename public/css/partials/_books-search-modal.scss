@@ -1,41 +1,77 @@
 .half-modal{
     width: 100%;
-    height:85vh;
+    min-height: 50vh;
     background-color:rgba(29, 26, 26, 0.829);
     filter: blur();
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     position: absolute;
-    top: 16vh;
+    top: 13vh;
     z-index: 3;
     transition: opacity 0.1s ease-in-out;
     border-radius: 0;
+    padding: 15px;
+    @media(max-width:500px){
+     min-height:100vh;
+     top: 16vh;
+    }
     .books-search-modal{
-        width: 80%;
-        height: 90%;
-        margin: auto;
+        .fas.fa-times{
+           font-size: 25px;
+        }
+        // width: auto;
+        min-width: 300px;
+        // height: auto;
+        min-height: 30px;
+        margin:8px auto;
         background-color: #ffffff;
-        // position: relative;
-      
+        position: relative;
+        @media(max-width:500px){
+            width: 100%;
+            min-height: 90vh;
+            min-width: auto;
+            .fas.fa-times{
+                display: block;
+            }
+        }
+         .section-title{
+             border: none;
+             margin: 8px 4px;
+             width: 100%;
+             height: 100%;
+             @media(max-width: 800px){
+                 font-size:16px;
+             }
+             @media(max-width: 500px){
+                 font-size:13px;
+             }
+         }
         .searched-books{
-            width: 90%;
-            height: 70%;
+            width: auto;
+            height: auto;
             display: flex;
             flex-wrap: wrap;
-            .section-title{
-                border: none;
-                @media(max-width: 800px){
-                    font-size:16px;
-                }
-                @media(max-width: 500px){
-                    font-size:13px;
-                }
-            }
-    
+            justify-content: flex-start;
+            align-items:center;
+            margin: auto;
+          
             .book{
-               width: 30%;
-               height: 90%;
+               width: 102px;
+               height: 160px;
+               background-position:center;
+               background-repeat: no-repeat;
+               background-size: contain;
+               margin: 8px;
+               @media(max-width: 800px){
+                  width: 75px;
+                  height: 130px;
+               }
+               @media(max-width: 500px){
+                  width: 55px;
+                  height: 110px;
+                  margin: 3px;
+               }
             }
         }
        

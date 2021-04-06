@@ -1,0 +1,26 @@
+.modal{
+    .cart-modal{
+        position: relative;
+        width: 80vw;
+        height: 80vh;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        overflow: hidden;
+        .title{
+            margin:0 auto;
+            font-size: 20px;
+        }
+        .purchased-books-container{
+
+        }
+        .pay-btn{
+            margin:0 auto;
+            padding: 6px 12px;
+            background-color: #f25;
+            color: #ffffff;
+        }
+
+    }
+}
