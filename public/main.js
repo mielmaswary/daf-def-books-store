@@ -1,4 +1,7 @@
 ///////////////////elements///////////////////////
+
+// const User = require("../src/models/userModel")
+
 //header
 const utilsContainer=document.getElementsByClassName('utils-container')[0]
 const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
@@ -89,6 +92,7 @@ const renderImages=()=>{
 
 const renderBookInfo=(book)=>{
     console.log(book.id)
+    localStorage.setItem('bookId',book.id)
      const url=`http://localhost:3000/books/get/${book.id}`
    
      fetch(url).then((res)=>{
@@ -150,11 +154,15 @@ const addUserToDB=(userData)=>{
        },
        body: JSON.stringify(userData),
        })
+       .then(response => response.json())
        .then(data=>{
-           console.log('sucsses!',data)
-       }).catch((err)=>{
+           console.log(data.user.email,data.user.password)
+           swichToLogin()
+       })
+       .catch((err)=>{
            alert(err)
        })
+      
 }
 
 const loginUser= async (userLoginData)=>{
@@ -173,7 +181,8 @@ const loginUser= async (userLoginData)=>{
         headerUserName.innerHTML=`שלום, ${data.user.name}`
         headerLogoutBtn.innerHTML='התנתקות'
         userLoggedinTools.classList.remove('display-none')
-        token=data.token
+        token= localStorage.setItem('token',data.token)
+        console.log(data)
         closeModal()
     }
     else{
@@ -183,19 +192,22 @@ const loginUser= async (userLoginData)=>{
    
 }
 const logout=()=>{
+    token=localStorage.getItem('token')
     const options={
         method: 'POST', 
         headers: {
-           'Authorization': `Bearer ${token},`,
+           'Authorization': `Bearer ${token}`
         }
     }
    fetch('http://localhost:3000/users/logout',options)
    .then(response => response.json())
    .then(data => {
-       console.log(data)
        userLoggedinTools.classList.add('display-none')
-    })
+       console.log(data)
 
+    }).catch(error=>{
+        console.log(error)
+    })
 }
 
 ////////////////////client functions//////////////////////
@@ -252,6 +264,7 @@ const openLoginForm=()=>{
     if(!window.matchMedia("(max-width: 800px)").matches)
          loginForm.style.transform='translateX(60%)'
     loginForm.classList.remove('display-none')
+    loginErrorMsg.classList.add('display-none')
 }
 const closeLoginForm=()=>{
     if(!window.matchMedia("(max-width: 800px)").matches)
@@ -262,12 +275,13 @@ const openSignupForm=()=>{
     if(!window.matchMedia("(max-width: 800px)").matches)
          signupForm.style.transform='translateX(-50%)'
     signupForm.classList.remove('display-none')
+    signUpErrorMsg.classList.add('display-none')
+
 }
 const closeSignupForm=()=>{
     if(!window.matchMedia("(max-width: 800px)").matches)
          signupForm.style.transform='translateX(50%)'
     signupForm.classList.add('display-none')
-
 }
 
 const swichToLogin=()=>{
@@ -454,12 +468,15 @@ for (let book of books)
 
 
 //*************cart***************
+
+//elements
 const cartModalBg=document.getElementById("cart-modal-bg")
 const cartModal=document.getElementsByClassName("cart-modal")[0]
 const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
 const payBtn=document.getElementsByClassName('pay-btn')[0]
 const cartMainIcon=document.getElementsByClassName('utils-container')[0].getElementsByClassName('fa-shopping-cart')[0]
-
+const purchasedCartIcon=document.getElementsByClassName('cart-icon')[0]
+//functions
 const openPurchasedBooksModal=()=>{
     cartModal.classList.remove('display-none')
     cartModalBg.classList.remove('display-none')
@@ -469,6 +486,33 @@ const closePurchasedBooksModal=()=>{
     cartModalBg.classList.add('display-none')
 }
 
+
+const bookPurchased=(bookId)=>{
+        token=localStorage.getItem('token')
+        fetch(`/users/bookPurchase/${bookId}`, {
+            method: 'POST', 
+            headers: {
+               'Content-Type': 'application/json',
+               'Authorization': `Bearer ${token}`   
+            }
+            })
+            .then(response => response.json())
+            .then(data=>{
+                console.log(data)
+             })
+            .catch((err)=>{
+                alert(err)
+            })
+           
+     }
+
+    
+
+const renderPurchasedBooks=()=>{
+
+}
+
+//events
 cartMainIcon.addEventListener('click',()=>{
     openPurchasedBooksModal()
 })
@@ -477,6 +521,15 @@ window.addEventListener('click',(event)=>{
         closePurchasedBooksModal()
     }
 })
+
+purchasedCartIcon.addEventListener('click',()=>{
+    bookPurchased(localStorage.getItem('bookId'))
+})
+
+
+
+
+
 
 ///////on load
 signupFormBtn.disabled=true

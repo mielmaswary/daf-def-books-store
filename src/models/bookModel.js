@@ -40,7 +40,8 @@ const bookSchema= new mongoose.Schema({
     new:{
         type:Boolean,
         default:false
-    }
+    },
+    
 })
 
 const Book=mongoose.model('book',bookSchema);

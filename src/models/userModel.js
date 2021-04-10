@@ -40,6 +40,12 @@ const userSchema = new mongoose.Schema(
 				}
 			},
 		},
+		purchasedBooks: [
+			{
+				type: String
+		    }
+		],
+		
 		tokens: [
 			{
 				token: {

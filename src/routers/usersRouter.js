@@ -2,6 +2,7 @@ const express=require('express')
 const auth = require("../middleware/auth");
 
 const User = require('../models/userModel')
+const Book =require('../models/bookModel')
 const router=new express.Router()
 
 
@@ -17,19 +18,21 @@ router.post("/users/add", async (req, res) => {
 	}
 });
 
-router.post("/users/new", async (req, res) => {
-	const user = new User(req.body);
-	try {
-		await user.save();
-		const token = await user.generateAuthToken();
-		res.send({ user, token });
-	} catch (err) {
-		res.status(400).send({
-			status: 400,
-			message: err.message,
-		});
-	}
-});
+
+
+// router.post("/users/new", async (req, res) => {
+// 	const user = new User(req.body);
+// 	try {
+// 		await user.save();
+// 		const token = await user.generateAuthToken();
+// 		res.send({ user, token });
+// 	} catch (err) {
+// 		res.status(400).send({
+// 			status: 400,
+// 			message: err.message,
+// 		});
+// 	}
+// });
 
 
 
@@ -51,9 +54,9 @@ router.post("/users/logout", auth, async (req, res) => {
 	try {
 		req.user.tokens = req.user.tokens.filter((tokenDoc) => tokenDoc.token !== req.token);
 		await req.user.save();
-		res.send(req.user.email);
+		res.send({data:req.user.name});
 	} catch (err) {
-		res.status(500).send(err);
+		res.status(500).send({msg:err});
 	}
 });
 
@@ -66,6 +69,33 @@ router.post("/users/logoutAll", auth, async (req, res) => {
 		res.status(500).send(err);
 	}
 });
+
+
+router.post("/users/bookPurchase/:bookId",auth, async (req, res) => {
+	try {
+		const bookId=req.params.bookId;
+		const purchasedBook=Book.findById(bookId)
+		if(purchasedBook!=undefined){
+			req.user.purchasedBooks.push(bookId)
+			await req.user.save();
+			res.send(req.user.purchasedBooks)
+		}
+		else{
+			res.status(404).send({
+				status: 404,
+				message: 'book not found',
+			});
+		}
+       
+	} catch (err) {
+		res.status(400).send({
+			status: 400,
+			message: 'must be logged in!',
+		});
+	}
+});
+
+
 
 
 module.exports=router

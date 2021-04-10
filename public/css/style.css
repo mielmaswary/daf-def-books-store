@@ -229,11 +229,13 @@
   font-size: 15px;
   padding: 0;
   margin: 0;
+  font-weight: bold;
 }
 
 .header .utils-container .user-loggedin-tools .user-logout {
-  -webkit-transform: translateX(-4px);
-          transform: translateX(-4px);
+  -webkit-transform: translateX(-16px);
+          transform: translateX(-16px);
+  font-weight: normal;
 }
 
 @media (max-width: 800px) {
