@@ -8,12 +8,17 @@
         flex-direction: column;
         justify-content: space-evenly;
         overflow: hidden;
+        margin: 10px 5px;
+        padding: 10px;
         .title{
             margin:0 auto;
             font-size: 20px;
         }
         .purchased-books-container{
-
+            display: flex;
+            flex-wrap: wrap;
+            overflow-y:auto;
+            margin: 10px 5px;
         }
         .pay-btn{
             margin:0 auto;
@@ -21,6 +26,27 @@
             background-color: #f25;
             color: #ffffff;
         }
+        .pay-bill{
+            text-align: center;
+        }
+        
+        .book{
+            width: 102px;
+            height: 160px;
+            background-position:center;
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin: 8px;
+            @media(max-width: 800px){
+               width: 75px;
+               height: 130px;
+            }
+            @media(max-width: 500px){
+               width: 55px;
+               height: 110px;
+               margin: 3px;
+            }
+         }
 
     }
 }

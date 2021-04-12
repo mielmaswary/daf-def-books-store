@@ -78,12 +78,12 @@ router.post("/users/bookPurchase/:bookId",auth, async (req, res) => {
 		if(purchasedBook!=undefined){
 			req.user.purchasedBooks.push(bookId)
 			await req.user.save();
-			res.send(req.user.purchasedBooks)
+			res.status(200).send(req.user.purchasedBooks)
 		}
 		else{
 			res.status(404).send({
 				status: 404,
-				message: 'book not found',
+				message: 'book not found'
 			});
 		}
        
@@ -94,7 +94,6 @@ router.post("/users/bookPurchase/:bookId",auth, async (req, res) => {
 		});
 	}
 });
-
 
 
 

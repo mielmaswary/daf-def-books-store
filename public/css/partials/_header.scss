@@ -75,10 +75,25 @@
       align-items: center;
       margin: 8px;
       position: relative;
+      .purchased-books-counter{
+        position:absolute;
+        top:-5px;
+        right:-5px;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background-color: #f25;
+        color: aliceblue;
+        font-size: 10px;
+        text-align: center;
+        line-height: 15px;
+        margin: 0;
+      }
       *{
           margin: 8px;
           font-size:30px;
           cursor: pointer;
+          position: relative;
       }
       .user-loggedin-tools{
         position: absolute;

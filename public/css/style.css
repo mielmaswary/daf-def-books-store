@@ -86,6 +86,47 @@
   opacity: 1;
 }
 
+.must-be-logged-in-msg {
+  width: 70%;
+  height: 40%;
+  background-color: rgba(245, 239, 239, 0.966);
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+}
+
+.must-be-logged-in-msg h3 {
+  font-size: 15px;
+}
+
+.button {
+  width: 60%;
+  padding: 15px;
+  margin: 2px;
+  border-radius: 4px;
+  border: solid #dfd7d7 1px;
+  font-size: 20px;
+  color: #ffffff;
+  -webkit-box-shadow: 1px 1px 5px #333333;
+          box-shadow: 1px 1px 5px #333333;
+  background-color: #f25;
+  text-align: center;
+  margin: 5px auto;
+  cursor: pointer;
+}
+
 .header {
   height: 100px;
   width: 100%;
@@ -201,10 +242,26 @@
   position: relative;
 }
 
+.header .utils-container .purchased-books-counter {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #f25;
+  color: aliceblue;
+  font-size: 10px;
+  text-align: center;
+  line-height: 15px;
+  margin: 0;
+}
+
 .header .utils-container * {
   margin: 8px;
   font-size: 30px;
   cursor: pointer;
+  position: relative;
 }
 
 .header .utils-container .user-loggedin-tools {
@@ -955,6 +1012,8 @@
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   overflow: hidden;
+  margin: 10px 5px;
+  padding: 10px;
 }
 
 .modal .cart-modal .title {
@@ -962,11 +1021,49 @@
   font-size: 20px;
 }
 
+.modal .cart-modal .purchased-books-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  overflow-y: auto;
+  margin: 10px 5px;
+}
+
 .modal .cart-modal .pay-btn {
   margin: 0 auto;
   padding: 6px 12px;
   background-color: #f25;
   color: #ffffff;
+}
+
+.modal .cart-modal .pay-bill {
+  text-align: center;
+}
+
+.modal .cart-modal .book {
+  width: 102px;
+  height: 160px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 8px;
+}
+
+@media (max-width: 800px) {
+  .modal .cart-modal .book {
+    width: 75px;
+    height: 130px;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal .cart-modal .book {
+    width: 55px;
+    height: 110px;
+    margin: 3px;
+  }
 }
 
 .display-none {

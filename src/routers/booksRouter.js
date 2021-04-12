@@ -1,6 +1,8 @@
 const express=require('express')
 const Book = require('../models/bookModel')
 const User = require('../models/userModel')
+const auth = require("../middleware/auth");
+
 
 
 
@@ -17,20 +19,40 @@ router.get('/books/get-all', async (req,res)=>{
        res.status(400).send(err.message)
     }
 })
-
 router.get('/books/get/:id', async (req,res)=>{
-   const bookId=req.params.id;
-   console.log(bookId)
+    const bookId=req.params.id;
+    console.log(bookId)
+     try{
+        const books=await Book.findById(bookId)
+        if(!books)
+        {
+            res.status(404).send({'message':'no books to display'})
+        }
+        res.send(books)
+     }catch(err){
+        res.status(400).send(err.message)
+     }
+ })
+ 
+
+
+router.get('/books/get-by-id', auth, async (req,res)=>{
+    const purchasedsBooksIds=req.user.purchasedBooks
     try{
-       const books=await Book.findById(bookId)
-       if(!books)
-       {
-           res.status(404).send({'message':'no books to display'})
-       }
-       res.send(books)
-    }catch(err){
-       res.status(400).send(err.message)
-    }
+        if(purchasedsBooksIds.length>0){
+           const books=[]
+           for(let bookId of purchasedsBooksIds){
+                let book= await Book.findById(bookId)
+                books.push(book)
+           }
+           res.send(books)
+        }
+    }catch (err) {
+		res.status(400).send({
+			status: 400,
+			message: 'must be logged in!',
+		});
+	}
 })
 
 router.get('/books/:searchValue', async (req,res)=>{
@@ -50,6 +72,8 @@ router.get('/books/:searchValue', async (req,res)=>{
         res.status(400).send(err.message)
      }
  })
+
+
 
 
 router.post('/books/add',async (req,res)=>{

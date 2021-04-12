@@ -24,7 +24,9 @@
             </div>
             <i class="far fa-user"></i>
             <i class="far fa-heart"></i>
-            <i class="fas fa-shopping-cart"></i>
+            <i class="fas fa-shopping-cart">
+                <div class="purchased-books-counter display-none"></div>
+            </i>
             <i class="fas fa-bars"></i>
         </div>
     </div>
@@ -89,10 +91,10 @@
         <div class="gallery-cell"></div>
     </div>
  </div>
+ 
 
 <div class="modal display-none">
     <form class="display-none" action="">
-        <i class="fas fa-times"></i>
         <div class="modal-title">יצירת חשבון חדש</div>
         <input type="text" name="name" placeholder="שם">
         <input type="text" name="age" placeholder="גיל">
@@ -112,7 +114,17 @@
         <div id="switch-to-signup" class="switch-title">עדיין אין לך חשבון?</div>
         <div id="login-error-msg" class="error-msg display-none"></div>
     </form>
+
+    
 </div>
+<div id="mustLoggedInModal" class="modal display-none">
+    <div class="must-be-logged-in-msg">
+         <h3>רגע רגע, קודם צריך להתחבר...</h3>
+          <a id="mustLoggedInButton" class="button">להתחברות</a>
+          <i class="fas fa-times"></i>
+    </div>
+
+ </div>
 <div class="modal display-none">
     <div class="book-info-modal">
         <div class="book-title">
@@ -140,7 +152,6 @@
                 <i class="fas fa-cart-plus"></i>
             </div>
         </div>
-      
     </div>
 </div>
 
@@ -162,8 +173,11 @@
         <div class="title">עגלת קניות
             <i class="fas fa-shopping-cart"></i>
         </div>
-        <div class="purchased-books-container"></div>
-        <div class="pay-btn">לתשלום</div>
+        <div class="purchased-books-container">
+            
+        </div>
+        <div class="pay-bill display-none">סה"כ לתשלום: 100 ש"ח</div>
+        <div class="pay-btn"> ביצוע תשלום</div>
     </div>
 </div>
 
