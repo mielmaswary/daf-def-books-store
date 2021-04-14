@@ -20,12 +20,15 @@
    display: none;
    z-index: -1;
  }
+ .position-relative{
+   position: relative;
+ }
 
 
  //close button
  .fa-times{
+  color: rgb(109, 103, 103);
   font-size:35px;
-  color: rgb(163, 157, 157);
   position: absolute;
   top: 8px;
   left: 8px;
@@ -33,6 +36,9 @@
  }
  :hover{
    opacity: 1;
+ }
+ :active{
+  color: rgb(163, 157, 157);
  }
 
 
@@ -66,3 +72,10 @@
   cursor: pointer;
 }
 
+
+.second-title{
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 10px;
+}

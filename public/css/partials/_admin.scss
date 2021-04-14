@@ -1,0 +1,28 @@
+
+.choose-options{
+    .options{
+        display: flex;
+    }
+}
+
+.search-book{
+    padding: 5px;
+    width: 100%;
+    height: 50px;
+    margin: auto;
+}
+
+
+.book-panel{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+    @media(max-width: 500px){
+        width: 100%;
+    }
+    *{
+        margin: 5px;
+        padding: 10px;
+    }
+}

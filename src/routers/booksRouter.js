@@ -39,14 +39,14 @@ router.get('/books/get/:id', async (req,res)=>{
 router.get('/books/get-by-id', auth, async (req,res)=>{
     const purchasedsBooksIds=req.user.purchasedBooks
     try{
+        const books=[]
         if(purchasedsBooksIds.length>0){
-           const books=[]
            for(let bookId of purchasedsBooksIds){
                 let book= await Book.findById(bookId)
                 books.push(book)
            }
-           res.send(books)
         }
+        res.send(books)
     }catch (err) {
 		res.status(400).send({
 			status: 400,
@@ -78,24 +78,36 @@ router.get('/books/:searchValue', async (req,res)=>{
 
 router.post('/books/add',async (req,res)=>{
     
-    const booksToAdd=req.body
+    const bookToAdd=new Book(req.body)
     try{
-        if(!booksToAdd)
+        if(!bookToAdd)
         {
             res.status(400).send({'message':'no books'})
         }
-        for(let book of booksToAdd ){
-            const bookToDB=new Book(book)
-            bookToDB.save()
-        }
-   
-        res.send(booksToAdd)
+      
+        await bookToAdd.save()
+        res.send(bookToAdd)
     }catch(err){
           res.status(500).send(err.message)
     }
 })
 
-router.patch('/books/edit', async(req,res)=>{
+router.post('/books/remove/:id',async (req,res)=>{
+    
+    const bookToRemove=await Book.findById(req.params.id)
+    try{
+        if(!bookToRemove)
+        {
+            res.status(400).send({'message':'no book'})
+        }
+        await Book.findByIdAndDelete(bookToRemove._id)
+        res.send(bookToRemove)
+    }catch(err){
+          res.status(500).send(err.message)
+    }
+})
+
+router.patch('/books/edit/:id', async(req,res)=>{
     
     const allowdUpdates = ["genres", "price","recommended","sale","new"];
 	for (let update in req.body) {
@@ -106,20 +118,20 @@ router.patch('/books/edit', async(req,res)=>{
 			});
 		}
 	}
-    const id=req.query.id
-    console.log(id)
+    const id=req.params.id
     try{
         const book=await Book.findByIdAndUpdate(id,req.body, {
 			new: true,
 			runValidators: true,
 		})
+        console.log(book)
+
         if (!book) {
 			return res.status(404).send({
 				status: 404,
 				message: "No book",
 			});
 		}
-console.log(book)
 		res.send(book);
       
     }catch(err){

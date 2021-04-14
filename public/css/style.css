@@ -73,9 +73,13 @@
   z-index: -1;
 }
 
+.position-relative {
+  position: relative;
+}
+
 .fa-times {
+  color: #6d6767;
   font-size: 35px;
-  color: #a39d9d;
   position: absolute;
   top: 8px;
   left: 8px;
@@ -84,6 +88,10 @@
 
 :hover {
   opacity: 1;
+}
+
+:active {
+  color: #a39d9d;
 }
 
 .must-be-logged-in-msg {
@@ -125,6 +133,13 @@
   text-align: center;
   margin: 5px auto;
   cursor: pointer;
+}
+
+.second-title {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 500;
+  padding: 10px;
 }
 
 .header {
@@ -996,6 +1011,11 @@
   }
 }
 
+.half-modal .books-search-modal .searched-books .book .fas.fa-times {
+  font-size: 10px;
+  color: #f25;
+}
+
 .modal .cart-modal {
   position: relative;
   width: 80vw;
@@ -1031,6 +1051,38 @@
   margin: 10px 5px;
 }
 
+.modal .cart-modal .purchased-books-container .book {
+  position: relative;
+  margin: 16px;
+}
+
+@media (max-width: 800px) {
+  .modal .cart-modal .purchased-books-container .book {
+    margin: 8px;
+  }
+}
+
+.modal .cart-modal .purchased-books-container .book .fa-times {
+  font-size: 16px;
+  left: 40px;
+  top: -24px;
+  padding: 7px;
+}
+
+@media (max-width: 800px) {
+  .modal .cart-modal .purchased-books-container .book .fa-times {
+    left: 25px;
+    top: -16px;
+  }
+}
+
+@media (max-width: 500px) {
+  .modal .cart-modal .purchased-books-container .book .fa-times {
+    left: 15px;
+    top: -10px;
+  }
+}
+
 .modal .cart-modal .pay-btn {
   margin: 0 auto;
   padding: 6px 12px;
@@ -1064,6 +1116,42 @@
     height: 110px;
     margin: 3px;
   }
+}
+
+.choose-options .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.search-book {
+  padding: 5px;
+  width: 100%;
+  height: 50px;
+  margin: auto;
+}
+
+.book-panel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 50%;
+  margin: auto;
+}
+
+@media (max-width: 500px) {
+  .book-panel {
+    width: 100%;
+  }
+}
+
+.book-panel * {
+  margin: 5px;
+  padding: 10px;
 }
 
 .display-none {

@@ -93,7 +93,7 @@ userSchema.methods.generateAuthToken = async function () {
 		},
 		process.env.secret,
 		{
-			expiresIn: "6h",
+			expiresIn: "30s",
 		}
 	);
 	user.tokens = user.tokens.concat({ token });

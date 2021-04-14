@@ -3,24 +3,25 @@
 // const { eventNames } = require("../src/models/bookModel")
 
 // const User = require("../src/models/userModel")
+
 //header
 const utilsContainer=document.getElementsByClassName('utils-container')[0]
 const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
 const headerCartBtn=utilsContainer.getElementsByClassName('fa-shopping-cart')[0]
 const headerMenuBtn=utilsContainer.getElementsByClassName('fa-bars')[0]
-const mainSearchForm=document.getElementsByClassName('main-search')[0]
+const mainSearchForm=document.getElementsByClassName('search-book')[0]
 const userLoggedinTools=document.getElementsByClassName('user-loggedin-tools')[0]
 const headerUserName=userLoggedinTools.getElementsByClassName('user-name')[0]
 const headerLogoutBtn=userLoggedinTools.getElementsByClassName('user-logout')[0]
 
 
-const recommendedsContainer =document.querySelector('#recommendeds')
-const salesContainer =document.querySelector('#sales')
-const newBooksContainer =document.querySelector('#new-books')
-const footer=document.querySelector('#footer')
-const footerDafdef=footer.getElementsByClassName('footer-daf-def')[0]
-const footerGenres=footer.getElementsByClassName('footer-genres')[0]
-const footerSales=footer.getElementsByClassName('footer-sales')[0]
+// const recommendedsContainer =document.querySelector('#recommendeds')
+// const salesContainer =document.querySelector('#sales')
+// const newBooksContainer =document.querySelector('#new-books')
+// const footer=document.querySelector('#footer')
+// const footerDafdef=footer.getElementsByClassName('footer-daf-def')[0]
+// const footerGenres=footer.getElementsByClassName('footer-genres')[0]
+// const footerSales=footer.getElementsByClassName('footer-sales')[0]
 
 //login modals
 const modalBackground=document.getElementsByClassName('modal')[0]
@@ -37,14 +38,14 @@ const mustLoggedInModal=document.getElementById('mustLoggedInModal')
 const mustLoggedInButton=document.getElementById('mustLoggedInButton')
 
 //books info modals
-const booksInfoModal=document.getElementsByClassName('modal')[2]
-const booksInfoBookName=document.getElementsByClassName('book-name')[0]
-const booksInfoAuthorName=document.getElementsByClassName('author-name')[0]
-const booksInfoBookImg=document.getElementsByClassName('info-img')[0]
-const booksInfoBookPrice=document.getElementsByClassName('info-price')[0]
-const booksInfoBookSummery=document.getElementsByClassName('summery')[0].querySelectorAll('p')[0]
-const booksInfoBookPages=document.getElementsByClassName('summery')[0].querySelectorAll('p')[1]
-const booksInfoBookGenre=document.getElementsByClassName('summery')[0].querySelectorAll('p')[2]
+// const booksInfoModal=document.getElementsByClassName('modal')[2]
+// const booksInfoBookName=document.getElementsByClassName('book-name')[0]
+// const booksInfoAuthorName=document.getElementsByClassName('author-name')[0]
+// const booksInfoBookImg=document.getElementsByClassName('info-img')[0]
+// const booksInfoBookPrice=document.getElementsByClassName('info-price')[0]
+// const booksInfoBookSummery=document.getElementsByClassName('summery')[0].querySelectorAll('p')[0]
+// const booksInfoBookPages=document.getElementsByClassName('summery')[0].querySelectorAll('p')[1]
+// const booksInfoBookGenre=document.getElementsByClassName('summery')[0].querySelectorAll('p')[2]
 const books=document.getElementsByClassName('gallery-cell')
 
 
@@ -57,67 +58,122 @@ const booksSearchTitle=halfModal.getElementsByClassName('section-title')[0]
 
 //cart
 
-const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
-const payBill=document.getElementsByClassName('pay-bill')[0]
+// const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
+// const payBill=document.getElementsByClassName('pay-bill')[0]
 
 ///////////////////server functions////////////////////
 
-const renderImages=()=>{
-    const url='http://localhost:3000/books/get-all'
+// const renderImages=()=>{
+//     const url='http://localhost:3000/books/get-all'
 
-    fetch(url).then((res)=>{
-        if(res.ok){
-           return res.json()
-        }
-        else{
-            throw new Error(res.status)
-        }
-    }).then((jsonObj)=>{
-       const recommendedsBooksUrl=jsonObj.filter(img=>img.recommended).map(img=>img.imageUrl)
-       const recommendedsBooksId=jsonObj.filter(img=>img.recommended).map(img=>img._id)
-       const recommendedsBooks=recommendedsContainer.getElementsByClassName('gallery-cell')
+//     fetch(url).then((res)=>{
+//         if(res.ok){
+//            return res.json()
+//         }
+//         else{
+//             throw new Error(res.status)
+//         }
+//     }).then((jsonObj)=>{
+//        const recommendedsBooksUrl=jsonObj.filter(img=>img.recommended).map(img=>img.imageUrl)
+//        const recommendedsBooksId=jsonObj.filter(img=>img.recommended).map(img=>img._id)
+//        const recommendedsBooks=recommendedsContainer.getElementsByClassName('gallery-cell')
 
-       const salesBooksUrl=jsonObj.filter(img=>img.sale).map(img=>img.imageUrl)
-       const salesBooksId=jsonObj.filter(img=>img.sale).map(img=>img._id)
-       const salesBooks=salesContainer.getElementsByClassName('gallery-cell')
+//        const salesBooksUrl=jsonObj.filter(img=>img.sale).map(img=>img.imageUrl)
+//        const salesBooksId=jsonObj.filter(img=>img.sale).map(img=>img._id)
+//        const salesBooks=salesContainer.getElementsByClassName('gallery-cell')
 
-       const newBooksUrl=jsonObj.filter(img=>img.new).map(img=>img.imageUrl)
-       const newBooksId=jsonObj.filter(img=>img.new).map(img=>img._id)
-       const newBooks=newBooksContainer.getElementsByClassName('gallery-cell')
+//        const newBooksUrl=jsonObj.filter(img=>img.new).map(img=>img.imageUrl)
+//        const newBooksId=jsonObj.filter(img=>img.new).map(img=>img._id)
+//        const newBooks=newBooksContainer.getElementsByClassName('gallery-cell')
 
 
-       for(let i=0;i<recommendedsBooks.length;i++){
-           recommendedsBooks[i].style.backgroundImage=`url(${recommendedsBooksUrl[i]})`
-           recommendedsBooks[i].id=recommendedsBooksId[i]
-           salesBooks[i].style.backgroundImage=`url(${salesBooksUrl[i]})`
-           salesBooks[i].id=salesBooksId[i]
-           newBooks[i].style.backgroundImage=`url(${newBooksUrl[i]})`
-           newBooks[i].id=newBooksId[i]
-       }
-    })  
-}
+//        for(let i=0;i<recommendedsBooks.length;i++){
+//            recommendedsBooks[i].style.backgroundImage=`url(${recommendedsBooksUrl[i]})`
+//            recommendedsBooks[i].id=recommendedsBooksId[i]
+//            salesBooks[i].style.backgroundImage=`url(${salesBooksUrl[i]})`
+//            salesBooks[i].id=salesBooksId[i]
+//            newBooks[i].style.backgroundImage=`url(${newBooksUrl[i]})`
+//            newBooks[i].id=newBooksId[i]
+//        }
+//     })  
+// }
 
-const renderBookInfo=(book)=>{
-    console.log(book.id)
-    localStorage.setItem('bookId',book.id)
-     const url=`http://localhost:3000/books/get/${book.id}`
+// const renderBookInfo=(book)=>{
+//     console.log(book.id)
+//     localStorage.setItem('bookId',book.id)
+//      const url=`http://localhost:3000/books/get/${book.id}`
    
-     fetch(url).then((res)=>{
-        if(res.ok){
-           return res.json()
-        }
-        else{
-            throw new Error(res.status)
-        }
-    }).then((jsonObj)=>{
-        booksInfoBookImg.style.backgroundImage=`url(${jsonObj.imageUrl})`;
-        booksInfoBookName.innerHTML=jsonObj.bookName;
-        booksInfoAuthorName.innerHTML=jsonObj.authorName;
-        booksInfoBookPrice.innerHTML=`ספר דיגיטלי: ${jsonObj.price} ש"ח`;
-        booksInfoBookPages.innerHTML= `מספר עמודים: ${jsonObj.pagesNum} `;
-        booksInfoBookGenre.innerHTML=`ז'אנר: ${jsonObj.genres} `;
-    })
+//      fetch(url).then((res)=>{
+//         if(res.ok){
+//            return res.json()
+//         }
+//         else{
+//             throw new Error(res.status)
+//         }
+//     }).then((jsonObj)=>{
+//         booksInfoBookImg.style.backgroundImage=`url(${jsonObj.imageUrl})`;
+//         booksInfoBookName.innerHTML=jsonObj.bookName;
+//         booksInfoAuthorName.innerHTML=jsonObj.authorName;
+//         booksInfoBookPrice.innerHTML=`ספר דיגיטלי: ${jsonObj.price} ש"ח`;
+//         booksInfoBookPages.innerHTML= `מספר עמודים: ${jsonObj.pagesNum} `;
+//         booksInfoBookGenre.innerHTML=`ז'אנר: ${jsonObj.genres} `;
+//     })
+// }
+
+
+///////////////////////////////////////////add book////////////////////////////////////////////////////
+
+//elements
+const addBookBtn=document.getElementById('book-add-btn')
+const addBookPanelContainer=document.getElementById('book-add-panel-container')
+
+//events
+addBookBtn.addEventListener('click',()=>{
+    openAddBookPanel()
+    closeEditBookPanel()
+})
+
+
+//functions
+const openAddBookPanel=()=>{
+    addBookPanelContainer.classList.remove('display-none')
 }
+
+const closeAddBookPanel=()=>{
+    addBookPanelContainer.classList.add('display-none')
+}
+
+
+///////////////////////////////////////////edit book////////////////////////////////////////////////////
+
+//elements
+const editBookBtn=document.getElementById('book-edit-btn')
+const editBookPanelContainer=document.getElementById('book-edit-panel-container')
+
+//events
+editBookBtn.addEventListener('click',()=>{
+    openEditBookPanel()
+    closeAddBookPanel()
+    
+})
+
+
+//functions
+const openEditBookPanel=()=>{
+    editBookPanelContainer.classList.remove('display-none')
+}
+const closeEditBookPanel=()=>{
+    editBookPanelContainer.classList.add('display-none')
+}
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////
 
 
 const renderBooksImagesBySearch=(searchValue)=>{
@@ -149,7 +205,6 @@ const renderBooksImagesBySearch=(searchValue)=>{
 
 const renderBooksImagesById=()=>{
     token=localStorage.getItem('token')
-    alert(document.cookie)
     const options={
         method: 'GET', 
         headers: {
@@ -246,10 +301,8 @@ const loginUser= async (userLoginData)=>{
    })
    
 }
-
 const logout=()=>{
     token=localStorage.getItem('token')
-    
     const options={
         method: 'POST', 
         headers: {
@@ -293,7 +346,7 @@ const logoutAll=()=>{
 const closeModal=()=>{
     closeLoginModal()
     closeSignupModal()
-    closeBooksModal()
+    // closeBooksModal()
 
     refreshFormsInputs()
 }
@@ -334,9 +387,9 @@ const closeSignupModal=()=>{
     signupForm.classList.add('display-none')
    
 }
-const closeBooksModal=()=>{
-    booksInfoModal.classList.add('display-none')
-}
+// const closeBooksModal=()=>{
+//     booksInfoModal.classList.add('display-none')
+// }
 
 const openLoginForm=()=>{
     if(!window.matchMedia("(max-width: 800px)").matches)
@@ -416,9 +469,9 @@ const showLoginErrorMsg=(msg)=>{
 
 //////////////////eventListeners//////////////////
 
-mainSearchForm.addEventListener('click',()=>{
+//mainSearchForm.addEventListener('click',()=>{
    
-})
+// })
 
 mainSearchForm.addEventListener("keyup",(event)=>{
     let searchValue=mainSearchForm.value.trim()
@@ -446,7 +499,7 @@ headerLoginBtn.addEventListener('click',openLoginModal)
 headerLogoutBtn.addEventListener('click',logout)
 
 window.addEventListener('click' ,(event)=> {
-    if (event.target===modalBackground|| event.target===booksInfoModal || event.target.className==="fas fa-times")
+    if (event.target===modalBackground||event.target.className==="fas fa-times")
         closeModal()
         closeSearchBooksModal()
   })
@@ -529,8 +582,6 @@ loginForm.addEventListener('submit',(event)=>{
         email:loginForm.email.value,
         password:loginForm.password.value
     }
-    localStorage.setItem('userEmail',userLoginData.email)
-    localStorage.setItem('userPassword',userLoginData.password)
     loginUser(userLoginData)
 })
 
@@ -547,125 +598,112 @@ for (let book of books)
 
 
 
-//*************cart***************
+// //*************cart***************
 
-//elements
-const cartModalBg=document.getElementById("cart-modal-bg")
-const cartModal=document.getElementsByClassName("cart-modal")[0]
-// const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
-const payBtn=document.getElementsByClassName('pay-btn')[0]
-const cartMainIcon=document.getElementsByClassName('utils-container')[0].getElementsByClassName('fa-shopping-cart')[0]
-const purchasedCartIcon=document.getElementsByClassName('cart-icon')[0]
-const purchasedBooksCounter=document.getElementsByClassName('purchased-books-counter')[0]
-//functions
-const openPurchasedBooksModal=()=>{
-    cartModal.classList.remove('display-none')
-    cartModalBg.classList.remove('display-none')
-}
-const closePurchasedBooksModal=()=>{
-    cartModal.classList.add('display-none')
-    cartModalBg.classList.add('display-none')
-}
+// //elements
+// const cartModalBg=document.getElementById("cart-modal-bg")
+// const cartModal=document.getElementsByClassName("cart-modal")[0]
+// // const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
+// const payBtn=document.getElementsByClassName('pay-btn')[0]
+// const cartMainIcon=document.getElementsByClassName('utils-container')[0].getElementsByClassName('fa-shopping-cart')[0]
+// const purchasedCartIcon=document.getElementsByClassName('cart-icon')[0]
+// const purchasedBooksCounter=document.getElementsByClassName('purchased-books-counter')[0]
+// //functions
+// const openPurchasedBooksModal=()=>{
+//     cartModal.classList.remove('display-none')
+//     cartModalBg.classList.remove('display-none')
+// }
+// const closePurchasedBooksModal=()=>{
+//     cartModal.classList.add('display-none')
+//     cartModalBg.classList.add('display-none')
+// }
 
 
-const bookPurchased=(bookId)=>{
-        token=localStorage.getItem('token')
-        fetch(`/users/bookPurchase/${bookId}`, {
-            method: 'POST', 
-            headers: {
-               'Content-Type': 'application/json',
-               'Authorization': `Bearer ${token}`   
-            }
-            })
-            .then(response =>{ 
-                if(response.status!==200)
-                   throw Error()
-                return response.json()  
-            })
-            .then(data=>{
-                console.log(data)
-                purchasedBooksCounter.classList.remove('display-none')
-                purchasedBooksCounter.innerHTML=data.length
-             })
-            .catch((err)=>{
-                closeBooksModal()
-                mustLoggedInModal.classList.remove('display-none')
-            })
+// const bookPurchased=(bookId)=>{
+//         token=localStorage.getItem('token')
+//         fetch(`/users/bookPurchase/${bookId}`, {
+//             method: 'POST', 
+//             headers: {
+//                'Content-Type': 'application/json',
+//                'Authorization': `Bearer ${token}`   
+//             }
+//             })
+//             .then(response =>{ 
+//                 if(response.status!==200)
+//                    throw Error()
+//                 return response.json()  
+//             })
+//             .then(data=>{
+//                 console.log(data)
+//                 purchasedBooksCounter.classList.remove('display-none')
+//                 purchasedBooksCounter.innerHTML=data.length
+//              })
+//             .catch((err)=>{
+//                 closeBooksModal()
+//                 mustLoggedInModal.classList.remove('display-none')
+//             })
            
-     }
+//      }
 
-const closeMustLoginModal=()=>{
-    mustLoggedInModal.classList.add('display-none')
+// const closeMustLoginModal=()=>{
+//     mustLoggedInModal.classList.add('display-none')
 
-}
-const renderPurchasedBooks=(purchasedBooksImgUrl)=>{
+// }
+// const renderPurchasedBooks=(purchasedBooksImgUrl)=>{
     
-}
+// }
 
-const removeBookFromCart=(bookId)=>{
-      token=localStorage.getItem('token')
-      console.log(localStorage.getItem('token'))
-        fetch(`/users/bookUnPurchase/${bookId}`, {
-            method: 'POST', 
-            headers: {
-               'Content-Type': 'application/json',
-               'Authorization': `Bearer ${token}`   
-            }
-            })
-            .then(response =>{ 
-                if(response.status!==200)
-                   throw Error()
-                return response.json()  
-            })
-            .then(data=>{
-                console.log(data)
-                openPurchasedBooksModal()
-                renderBooksImagesById()
-                // purchasedBooksCounter.classList.remove('display-none')
-                // purchasedBooksCounter.innerHTML=data.length
-             })
-            .catch((err)=>{
-                closeBooksModal()
-                mustLoggedInModal.classList.remove('display-none')
-            })
+// const removeBookFromCart=(bookId)=>{
+//       token=localStorage.getItem('token')
+//         fetch(`/users/bookUnPurchase/${bookId}`, {
+//             method: 'POST', 
+//             headers: {
+//                'Content-Type': 'application/json',
+//                'Authorization': `Bearer ${token}`   
+//             }
+//             })
+//             .then(response =>{ 
+//                 if(response.status!==200)
+//                    throw Error()
+//                 return response.json()  
+//             })
+//             .then(data=>{
+//                 console.log(data)
+//                 openPurchasedBooksModal()
+//                 renderBooksImagesById()
+//                 // purchasedBooksCounter.classList.remove('display-none')
+//                 // purchasedBooksCounter.innerHTML=data.length
+//              })
+//             .catch((err)=>{
+//                 closeBooksModal()
+//                 mustLoggedInModal.classList.remove('display-none')
+//             })
           
-}
+// }
 
-//events
-cartMainIcon.addEventListener('click',()=>{
-    openPurchasedBooksModal()
-    renderBooksImagesById()
-})
-window.addEventListener('click',(event)=>{
-    if(event.target===cartModalBg || event.target.className==="fas fa-times" && !event.target.classList.contains('remove-book-btn') ){
-        closePurchasedBooksModal()
-        closeMustLoginModal()
-    }
-})
+// //events
 
-purchasedCartIcon.addEventListener('click',()=>{
-    closeModal()
-    bookPurchased(localStorage.getItem('bookId'))
-})
+// window.addEventListener('click',(event)=>{
+//     if(event.target===cartModalBg || event.target.className==="fas fa-times" && !event.target.classList.contains('remove-book-btn') ){
+//         closePurchasedBooksModal()
+//         closeMustLoginModal()
+//     }
+// })
 
-mustLoggedInButton.addEventListener('click', ()=>{
-    modalBackground.classList.remove('dispaly-none')
-    closeMustLoginModal()
-    openLoginModal()
-})
+// purchasedCartIcon.addEventListener('click',()=>{
+//     closeModal()
+//     bookPurchased(localStorage.getItem('bookId'))
+// })
+
+// mustLoggedInButton.addEventListener('click', ()=>{
+//     modalBackground.classList.remove('dispaly-none')
+//     closeMustLoginModal()
+//     openLoginModal()
+// })
 
 
 
 ///////on load
 signupFormBtn.disabled=true
-// loginFormBtn.disabled=true
-renderImages()
-
-let userLoginData={
-    email: localStorage.getItem('userEmail'),
-    password: localStorage.getItem('userPassword')
-}
-
-if(userLoginData.email!==null)
-   loginUser(userLoginData)
-
+// // loginFormBtn.disabled=true
+// renderImages()

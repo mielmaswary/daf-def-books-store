@@ -4,12 +4,14 @@ const port=process.env.port
 const app=express()
 const booksRouters=require('./routers/booksRouter')
 const usersRouters=require('./routers/usersRouter')
+const cookieParser = require('cookie-parser');
 
 const path=require('path')
 const { dirname } = require('path')
 const publicDir=path.join(__dirname,'../public')
 require('./db/mongoose')
 
+app.use(cookieParser());
 app.use(express.static(publicDir))
 app.use(express.json())
 app.use(cors())

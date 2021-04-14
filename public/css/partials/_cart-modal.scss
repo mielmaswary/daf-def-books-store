@@ -19,6 +19,31 @@
             flex-wrap: wrap;
             overflow-y:auto;
             margin: 10px 5px;
+            .book{
+                position: relative;
+                margin: 16px;
+                @media(max-width: 800px){
+                    margin: 8px;
+                }
+                .fa-times{
+                    font-size: 16px;
+                    //  color:#f25;
+                    left: 40px;
+                    top:-24px;
+                    padding: 7px;
+                    @media(max-width: 800px){
+                        left: 25px;
+                        top:-16px;
+    
+                    }
+                    @media(max-width: 500px){
+                        left: 15px;
+                        top:-10px;
+    
+                    }
+                }
+            
+            }    
         }
         .pay-btn{
             margin:0 auto;

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="header">
+       
+        <div class="logo-container">
+            <h1><span>ד</span>פדף</h1>
+            <h3>ספרים שקוראים אנשים</h3>
+        </div>
+       
+        <div class="utils-container">
+            <div class="user-loggedin-tools display-none">
+                <div class="user-name"></div>
+                <div class="user-logout"></div>
+            </div>
+            <i class="far fa-user"></i>
+         
+        </div>
+    </div>
+
+    <div class="choose-options">
+        <div class="second-title">מה תרצה לעשות?</div>
+        <div class="options">
+            <div id="book-add-btn" class="button">להוסיף ספר חדש</div>
+            <div id="book-edit-btn" class="button">לערוך ספר קיים</div>
+            <div id="book-remove-btn" class="button">למחוק ספר </div>
+        </div>
+    </div>
+    <input class="search-book" placeholder="חיפוש לפי שם ספר או מחבר"></input>
+
+  <div id="book-edit-panel-container" class="display-none">
+    <form class="book-panel"  action="">
+        <div id="book-edit-panel-title" class="second-title">עריכת פרטי הספר</div>
+        <input type="text" name="authorName" placeholder="שם הספר">
+        <input type="text" name="bookName" placeholder="שם המחבר">
+        <input type="text" name="genre" placeholder="ז'אנר">
+        <input type="text" name="pages" placeholder="מספר עמודים">
+        <input type="text" name="img" placeholder="תמונה">
+        <input type="text" name="price" placeholder="מחיר">
+        <button class="disableSubmit">שמירת פרטים</button>
+        <div id="sign-error-msg" class="error-msg display-none"></div>
+    </form>
+  </div>
+  <div id="book-add-panel-container" class="display-none">
+    <form class="book-panel"  action="">
+        <div id="book-add-panel-title" class="second-title">הוספת ספר חדש</div>
+        <input type="text" name="authorName" placeholder="שם הספר">
+        <input type="text" name="bookName" placeholder="שם המחבר">
+        <input type="text" name="genre" placeholder="ז'אנר">
+        <input type="text" name="pages" placeholder="מספר עמודים">
+        <input type="text" name="img" placeholder="תמונה">
+        <input type="text" name="price" placeholder="מחיר">
+        <button class="disableSubmit">שמירת פרטים</button>
+        <div id="sign-error-msg" class="error-msg display-none"></div>
+    </form>
+  </div>
+
+
+<div class="modal display-none">
+    <form class="display-none" action="">
+        <div class="modal-title">יצירת חשבון חדש</div>
+        <input type="text" name="name" placeholder="שם">
+        <input type="text" name="age" placeholder="גיל">
+        <input type="email" name="email" placeholder="כתובת אימייל">
+        <input type="password" name="password" placeholder="סיסמא">
+        <button class="disableSubmit">הרשמה</button>
+        <div id="switch-to-login" class="switch-title">כבר יש לך חשבון?</div>
+        <div id="sign-error-msg" class="error-msg display-none"></div>
+    </form>
+
+    <form class="display-none" action="">
+        <i class="fas fa-times"></i>
+        <div class="modal-title">התחבר כמנהל</div>
+        <input type="email" name="email" placeholder="כתובת אימייל">
+        <input type="password" name="password" placeholder="סיסמא">
+        <button class="disableSubmit">התחברות</button>
+        <div id="switch-to-signup" class="switch-title">עדיין אין לך חשבון?</div>
+        <div id="login-error-msg" class="error-msg display-none"></div>
+    </form>
+</div>
+<div id="mustLoggedInModal" class="modal display-none">
+    <div class="must-be-logged-in-msg">
+         <h3>רגע רגע, קודם צריך להתחבר...</h3>
+          <a id="mustLoggedInButton" class="button">להתחברות</a>
+          <i class="fas fa-times"></i>
+    </div>
+
+ </div>
+
+
+<div class="half-modal display-none">
+    <div class="books-search-modal">
+            <i class="fas fa-times"></i>
+            <div class="section-title">לא מצאנו ספרים שמתאימים לחיפוש...</div> 
+            <div id="searched-books-container" class="searched-books" >
+               
+           </div>
+    </div>
+</div>
+
+
+
+<div class="credits"></div>
+
+    <script src="https://kit.fontawesome.com/6391380adf.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+  
+    <script type="module"  src="./admin.js"></script>
+ 
+</body>
+</html>
