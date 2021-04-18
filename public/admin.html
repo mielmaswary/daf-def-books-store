@@ -12,7 +12,7 @@
 </head>
 <body>
    
-    <div class="header">
+    <div class="header display-none">
        
         <div class="logo-container">
             <h1><span>ד</span>פדף</h1>
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <div class="choose-options">
+    <div class="choose-options display-none">
         <div class="second-title">מה תרצה לעשות?</div>
         <div class="options">
             <div id="book-add-btn" class="button">להוסיף ספר חדש</div>
@@ -42,33 +42,52 @@
   <div id="book-edit-panel-container" class="display-none">
     <form class="book-panel"  action="">
         <div id="book-edit-panel-title" class="second-title">עריכת פרטי הספר</div>
-        <input type="text" name="authorName" placeholder="שם הספר">
-        <input type="text" name="bookName" placeholder="שם המחבר">
-        <input type="text" name="genre" placeholder="ז'אנר">
-        <input type="text" name="pages" placeholder="מספר עמודים">
-        <input type="text" name="img" placeholder="תמונה">
-        <input type="text" name="price" placeholder="מחיר">
-        <button class="disableSubmit">שמירת פרטים</button>
+        <div>
+            <div id="currentBookName">  </div>
+            <input type="text" name="newBookName" placeholder="עדכן את שם הספר ">
+        </div>
+        <div>
+            <div id="currentAuthorName">  </div>
+            <input type="text" name="newAuthorName" placeholder=" עדכן את שם המחבר ">
+        </div>
+        <div>
+            <div id="currentGenre"></div>
+            <input type="text" name="newGenre" placeholder=" עדכן את הז'אנר ">
+        </div>
+       <div>
+            <div id="currentPages"></div>
+            <input type="text" name="newPages" placeholder=" עדכן את מספר עמודים">
+       </div>
+       <div>
+            <div id="currentImg"></div>
+            <input type="text" name="newImg" placeholder=".(עדכן את תמונת הספר (קישור לתמונה ">
+            <div id="check-img">בדוק</div>
+       </div>
+       <div>
+           <div id="currentPrice">34</div>
+           <input type="text" name="newPrice" placeholder=" עדכן את מחיר הספר">
+       </div>
+        <button class="disableSubmit">עדכן פרטי הספר!</button>
         <div id="sign-error-msg" class="error-msg display-none"></div>
     </form>
   </div>
   <div id="book-add-panel-container" class="display-none">
     <form class="book-panel"  action="">
         <div id="book-add-panel-title" class="second-title">הוספת ספר חדש</div>
-        <input type="text" name="authorName" placeholder="שם הספר">
-        <input type="text" name="bookName" placeholder="שם המחבר">
+        <input type="text" name="bookName" placeholder="שם הספר">
+        <input type="text" name="authorName" placeholder="שם המחבר">
         <input type="text" name="genre" placeholder="ז'אנר">
         <input type="text" name="pages" placeholder="מספר עמודים">
         <input type="text" name="img" placeholder="תמונה">
         <input type="text" name="price" placeholder="מחיר">
-        <button class="disableSubmit">שמירת פרטים</button>
+        <button class="disableSubmit">הוסף את הספר לאתר!</button>
         <div id="sign-error-msg" class="error-msg display-none"></div>
     </form>
   </div>
 
 
-<div class="modal display-none">
-    <form class="display-none" action="">
+<div class="modal">
+    <!-- <form class="display-none" action="">
         <div class="modal-title">יצירת חשבון חדש</div>
         <input type="text" name="name" placeholder="שם">
         <input type="text" name="age" placeholder="גיל">
@@ -77,9 +96,9 @@
         <button class="disableSubmit">הרשמה</button>
         <div id="switch-to-login" class="switch-title">כבר יש לך חשבון?</div>
         <div id="sign-error-msg" class="error-msg display-none"></div>
-    </form>
+    </form> -->
 
-    <form class="display-none" action="">
+    <form class="" action="">
         <i class="fas fa-times"></i>
         <div class="modal-title">התחבר כמנהל</div>
         <input type="email" name="email" placeholder="כתובת אימייל">
@@ -97,6 +116,10 @@
     </div>
 
  </div>
+
+ <div id="msg-modal" class="msg-modal display-none">
+     <div></div>
+</div>
 
 
 <div class="half-modal display-none">

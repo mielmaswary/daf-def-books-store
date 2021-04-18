@@ -3,7 +3,7 @@
 // const { eventNames } = require("../src/models/bookModel")
 
 // const User = require("../src/models/userModel")
-
+openLoginModal()
 //header
 const utilsContainer=document.getElementsByClassName('utils-container')[0]
 const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
@@ -121,6 +121,18 @@ const booksSearchTitle=halfModal.getElementsByClassName('section-title')[0]
 // }
 
 
+///////////////////////////////////////////general/////////////////////////////////////////////////////
+
+//elements
+const msgModal=document.getElementById('msg-modal')
+const header=document.getElementsByClassName('header')[0]
+const chooseOptions=document.getElementsByClassName('choose-options')[0]
+
+//functions
+const openMsgModal=(msg)=>{
+    msgModal.classList.remove("display-none")
+    msgModal.children[0].innerHTML=msg
+}
 ///////////////////////////////////////////add book////////////////////////////////////////////////////
 
 //elements
@@ -129,6 +141,7 @@ const addBookPanelContainer=document.getElementById('book-add-panel-container')
 
 //events
 addBookBtn.addEventListener('click',()=>{
+    mainSearchForm.classList.add('display-none')
     openAddBookPanel()
     closeEditBookPanel()
 })
@@ -149,33 +162,70 @@ const closeAddBookPanel=()=>{
 //elements
 const editBookBtn=document.getElementById('book-edit-btn')
 const editBookPanelContainer=document.getElementById('book-edit-panel-container')
+const editBookPanel=document.getElementsByClassName('book-panel')[0]
 
 //events
 editBookBtn.addEventListener('click',()=>{
-    openEditBookPanel()
+    openMainSearchForm()
     closeAddBookPanel()
-    
+    mainSearchForm.value=''
+
+})
+editBookPanel.addEventListener('submit',(event)=>{
+    event.preventDefault()
+    const bookData=createObjData(event.target)
+    updateBookDetailes(bookData,localStorage.getItem('edit-book-id'))
+    openMsgModal('מצויין:)<br> כל הפרטים עודכנו!')
+    setTimeout(()=>{
+        location.reload();
+    },1000)
+    localStorage.removeItem('edit-book-id');
+
+
 })
 
 
 //functions
-const openEditBookPanel=()=>{
-    editBookPanelContainer.classList.remove('display-none')
+const openMainSearchForm=()=>{
+    mainSearchForm.classList.remove('display-none')
 }
+const openEditBookPanel=(bookId)=>{
+    editBookPanelContainer.classList.remove('display-none')
+    restartInputValues()
+    renderBookDetails(bookId)
+}
+const restartInputValues=()=>{
+    for (let child of editBookPanel.children){
+        if(child.childElementCount>0 && child.children[1].tagName==='INPUT')
+            child.children[1].value=''
+     }
+}
+
 const closeEditBookPanel=()=>{
     editBookPanelContainer.classList.add('display-none')
 }
 
+const createObjData =(form)=>{
+    const objData ={
+        bookName:form[0].value,
+        authorName: form[1].value,
+        genres:form[2].value,
+        pagesNum:form[3].value,
+        imageUrl:form[4].value,
+        price:form[5].value
+    }
+    for (let field in objData ){
+        if(objData[field]==="")
+           delete objData[field]
+    }
 
+    return objData
+}
 
-
-
-
-
-
-///////////////////////////////////////////////////
-
-
+const modalMsg=(msg)=>{
+    
+}
+//fatch functions
 const renderBooksImagesBySearch=(searchValue)=>{
     const url=`http://localhost:3000/books/${searchValue}`
 
@@ -198,10 +248,57 @@ const renderBooksImagesBySearch=(searchValue)=>{
            galleryCell.className='book'
            searchedBooksContainer.appendChild(galleryCell)
            galleryCell.style.backgroundImage=`url(${seachedBooksUrl[i]})`
-           galleryCell.id=searchedBooksId[i] 
+           galleryCell.id=searchedBooksId[i]
+           galleryCell.addEventListener('click', ()=>{
+               openEditBookPanel(galleryCell.id)
+               localStorage.setItem('edit-book-id',galleryCell.id)
+               closeAddBookPanel()
+           }) 
        }
     })  
 }
+
+
+const renderBookDetails=(bookId)=>{
+    token=localStorage.getItem('token')
+    const options={
+        method: 'GET', 
+        headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${token}`
+        }
+    }
+    fetch(`http://localhost:3000/books/get/${bookId}`,options)
+    .then(res=>res.json())
+    .then(book=>{
+        console.log(book)
+        currentBookName.innerHTML=book.bookName
+        currentAuthorName.innerHTML=book.authorName
+        currentGenre.innerHTML=book.genres
+        currentPages.innerHTML=book.pagesNum
+        // currentImg.innerHTML=book.imageUrl
+        currentPrice.innerHTML=book.price
+        
+    }).catch(err=>{
+        console.log(err)
+    })
+}
+
+const updateBookDetailes=(bookData,bookId)=>{
+    token=localStorage.getItem('token')
+    const url=`http://localhost:3000/books/edit/${bookId}`
+    const options={
+        method: 'PATCH', 
+        headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(bookData)
+    }
+    fetch(url,options)
+}
+
+///////////////////////////////////////////////////
 
 const renderBooksImagesById=()=>{
     token=localStorage.getItem('token')
@@ -217,7 +314,6 @@ const renderBooksImagesById=()=>{
     .then(books=>{
         let totalPay=0
         const booksImgUrl=books.map(book=>book.imageUrl)
-
         while(purchasedBooksContainer.children.length>0){
             purchasedBooksContainer.removeChild(purchasedBooksContainer.lastChild)
          }
@@ -246,7 +342,6 @@ const renderBooksImagesById=()=>{
         console.log(err)
     })
 }
-
 
 
 
@@ -283,15 +378,18 @@ const loginUser= async (userLoginData)=>{
    .then(response => response.json())
    .then(data => {
     if(data.user){
-        headerUserName.innerHTML=`שלום, ${data.user.name}`
-        headerLogoutBtn.innerHTML='התנתקות'
-        userLoggedinTools.classList.remove('display-none')
-        payBill.classList.remove('display-none')
-        purchasedBooksCounter.innerHTML=data.user.purchasedBooks.length
-        purchasedBooksCounter.innerHTML=data.user.purchasedBooks.length
-        if(data.user.purchasedBooks.length>0)
-           purchasedBooksCounter.classList.remove('display-none')
+        // headerUserName.innerHTML=`שלום, ${data.user.name}`
+        // headerLogoutBtn.innerHTML='התנתקות'
+        // userLoggedinTools.classList.remove('display-none')
+        // payBill.classList.remove('display-none')
+        // purchasedBooksCounter.innerHTML=data.user.purchasedBooks.length
+        // purchasedBooksCounter.innerHTML=data.user.purchasedBooks.length
+        // if(data.user.purchasedBooks.length>0)
+        //    purchasedBooksCounter.classList.remove('display-none')
+        chooseOptions.classList.remove('display-none')
+        header.classList.remove('display-none')
         token= localStorage.setItem('token',data.token)
+
         console.log(data)
         closeModal()
     }
@@ -472,7 +570,7 @@ const showLoginErrorMsg=(msg)=>{
 //mainSearchForm.addEventListener('click',()=>{
    
 // })
-
+mainSearchForm.classList.add('display-none')
 mainSearchForm.addEventListener("keyup",(event)=>{
     let searchValue=mainSearchForm.value.trim()
     if(searchValue!=='' && event.key!=='Backspace')
@@ -571,8 +669,7 @@ signupForm.addEventListener('submit',(event)=>{
         password:signupForm.password.value
     }
 
-    addUserToDB(userData)
-        
+    addUserToDB(userData)    
 })
 
 

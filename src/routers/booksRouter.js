@@ -109,23 +109,21 @@ router.post('/books/remove/:id',async (req,res)=>{
 
 router.patch('/books/edit/:id', async(req,res)=>{
     
-    const allowdUpdates = ["genres", "price","recommended","sale","new"];
-	for (let update in req.body) {
-		if (!allowdUpdates.includes(update)) {
-			return res.status(400).send({
-				status: 400,
-				message: "Invalid update: " + update,
-			});
-		}
-	}
+    // const allowdUpdates = ["genres", "price","recommended","sale","new"];
+	// for (let update in req.body) {
+	// 	if (!allowdUpdates.includes(update)) {
+	// 		return res.status(400).send({
+	// 			status: 400,
+	// 			message: "Invalid update: " + update,
+	// 		});
+	// 	}
+	// }
     const id=req.params.id
     try{
         const book=await Book.findByIdAndUpdate(id,req.body, {
 			new: true,
 			runValidators: true,
 		})
-        console.log(book)
-
         if (!book) {
 			return res.status(404).send({
 				status: 404,
