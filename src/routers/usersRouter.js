@@ -20,29 +20,12 @@ router.post("/users/add", async (req, res) => {
 
 
 
-// router.post("/users/new", async (req, res) => {
-// 	const user = new User(req.body);
-// 	try {
-// 		await user.save();
-// 		const token = await user.generateAuthToken();
-// 		res.send({ user, token });
-// 	} catch (err) {
-// 		res.status(400).send({
-// 			status: 400,
-// 			message: err.message,
-// 		});
-// 	}
-// });
-
-
-
 router.post("/users/login", async (req, res) => {
 	try {
 		 const user = await User.findUserbyEmailAndPassword(req.body.email, req.body.password);
 		 const token = await user.generateAuthToken();
-		//res.cookie('token', token)
-
-		 res.send({user,token})
+		 const expirationTime=Date.now()+30000
+		 res.send({user,token,expirationTime})
 		
 	} catch (err) {
 		res.status(400).send({
@@ -122,6 +105,8 @@ router.post("/users/bookUnPurchase/:bookId",auth, async (req, res) => {
 		});
 	}
 });
+
+
 
 
 

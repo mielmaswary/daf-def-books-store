@@ -23,7 +23,8 @@ const bookSchema= new mongoose.Schema({
         type:Number
     },
     imageUrl:{
-        type:String
+        type:String,
+        default:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7QeedeCYLk1rX2mH2nzV_fioH1ae0g6gprkKElXTGAZD3U5SmM8MxgMNVITh_cf7nY94&usqp=CAU'
     },
     price:{
         type:Number

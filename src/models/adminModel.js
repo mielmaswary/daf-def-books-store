@@ -4,18 +4,9 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const Book = require("./bookModel");
 
-const userSchema = new mongoose.Schema(
+const adminSchema = new mongoose.Schema(
 	{
-		name: {
-			type: String,
-			trim: true,
-			default: "user",
-		},
-		age: {
-			type: Number,
-			required: true,
-			min: 12,
-		},
+		
 		email: {
 			type: String,
 			required: true,
@@ -40,11 +31,6 @@ const userSchema = new mongoose.Schema(
 				}
 			},
 		},
-		purchasedBooks: [
-			{
-				type: String
-		    }
-		],
 		
 		tokens: [
 			{
@@ -60,46 +46,45 @@ const userSchema = new mongoose.Schema(
 	}
 );
 
-userSchema.pre("save", async function (next) {
-	const user = this;
+adminSchema.pre("save", async function (next) {
+	const admin = this;
 
-	if (user.isModified("password")) {
-		user.password = await bcrypt.hash(user.password, 8);
+	if (admin.isModified("password")) {
+		admin.password = await bcrypt.hash(admin.password, 8);
 	}
 
 	next();
 });
 
-userSchema.statics.findUserbyEmailAndPassword = async (email, password) => {
-	const user = await User.findOne({ email });
-	if (!user) {
+adminSchema.statics.findAdminbyEmailAndPassword = async (email, password) => {
+	const admin = await Admin.findOne({ email });
+	if (!admin) {
 		throw new Error("unable to login");
 	}
 
-	const isPassMatch = await bcrypt.compare(password, user.password);
+	const isPassMatch = await bcrypt.compare(password, admin.password);
 
 	if (!isPassMatch) {
 		throw new Error("unable to login");
 	}
-
-	return user;
+	return admin;
 };
 
-userSchema.methods.generateAuthToken = async function () {
-	const user = this;
+adminSchema.methods.generateAuthToken = async function () {
+	const admin = this;
 	const token = jwt.sign(
 		{
-			_id: user._id,
+			_id: admin._id,
 		},
 		process.env.secret,
 		{
-			expiresIn: "5s",
+			expiresIn: "30s",
 		}
 	);
-	user.tokens = user.tokens.concat({ token });
-	console.log(user.tokens)
+	admin.tokens = admin.tokens.concat({ token });
+	console.log(admin.tokens)
 
-	await user.save();
+	 await admin.save();
 
 	return token;
 };
@@ -114,20 +99,19 @@ userSchema.methods.generateAuthToken = async function () {
 // 	return userObj;
 // };
 
-userSchema.virtual("tasks", {
-	ref: "Task",
-	localField: "_id",
-	foreignField: "user",
-});
+// adminSchema.virtual("tasks", {
+// 	ref: "Task",
+// 	localField: "_id",
+// 	foreignField: "admin",
+// });
 
-userSchema.pre("remove", async function (next) {
-	const user = this;
-
-	await Task.deleteMany({ user: user._id });
+adminSchema.pre("remove", async function (next) {
+	const admin = this;
+	await Task.deleteMany({ admin: admin._id });
 	next();
 });
 
-const User = mongoose.model("User", userSchema);
+const Admin = mongoose.model("Admin", adminSchema);
 
-module.exports = User;
+module.exports = Admin;
 

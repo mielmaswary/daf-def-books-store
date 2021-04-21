@@ -1,124 +1,5 @@
-///////////////////elements///////////////////////
-
-// const { eventNames } = require("../src/models/bookModel")
-
-// const User = require("../src/models/userModel")
-openLoginModal()
-//header
-const utilsContainer=document.getElementsByClassName('utils-container')[0]
-const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
-const headerCartBtn=utilsContainer.getElementsByClassName('fa-shopping-cart')[0]
-const headerMenuBtn=utilsContainer.getElementsByClassName('fa-bars')[0]
-const mainSearchForm=document.getElementsByClassName('search-book')[0]
-const userLoggedinTools=document.getElementsByClassName('user-loggedin-tools')[0]
-const headerUserName=userLoggedinTools.getElementsByClassName('user-name')[0]
-const headerLogoutBtn=userLoggedinTools.getElementsByClassName('user-logout')[0]
 
 
-// const recommendedsContainer =document.querySelector('#recommendeds')
-// const salesContainer =document.querySelector('#sales')
-// const newBooksContainer =document.querySelector('#new-books')
-// const footer=document.querySelector('#footer')
-// const footerDafdef=footer.getElementsByClassName('footer-daf-def')[0]
-// const footerGenres=footer.getElementsByClassName('footer-genres')[0]
-// const footerSales=footer.getElementsByClassName('footer-sales')[0]
-
-//login modals
-const modalBackground=document.getElementsByClassName('modal')[0]
-const signupForm=modalBackground.children[0]
-const loginForm=modalBackground.children[1]
-const switchToSignUpBtn=document.querySelector('#switch-to-signup')
-const switchToLoginBtn=document.querySelector('#switch-to-login')
-const loginFormBtn=loginForm.getElementsByTagName('button')[0]
-const signupFormBtn=signupForm.getElementsByTagName('button')[0]
-const loginErrorMsg=document.getElementById('login-error-msg')
-const signUpErrorMsg=document.getElementById('sign-error-msg')
-let token=''
-const mustLoggedInModal=document.getElementById('mustLoggedInModal')
-const mustLoggedInButton=document.getElementById('mustLoggedInButton')
-
-//books info modals
-// const booksInfoModal=document.getElementsByClassName('modal')[2]
-// const booksInfoBookName=document.getElementsByClassName('book-name')[0]
-// const booksInfoAuthorName=document.getElementsByClassName('author-name')[0]
-// const booksInfoBookImg=document.getElementsByClassName('info-img')[0]
-// const booksInfoBookPrice=document.getElementsByClassName('info-price')[0]
-// const booksInfoBookSummery=document.getElementsByClassName('summery')[0].querySelectorAll('p')[0]
-// const booksInfoBookPages=document.getElementsByClassName('summery')[0].querySelectorAll('p')[1]
-// const booksInfoBookGenre=document.getElementsByClassName('summery')[0].querySelectorAll('p')[2]
-const books=document.getElementsByClassName('gallery-cell')
-
-
-//books search modals
-const halfModal=document.getElementsByClassName('half-modal')[0]
-const booksSearchModal=halfModal.getElementsByClassName('books-search-modal')[0]
-const searchedBooksContainer=document.querySelector('#searched-books-container');
-const booksSearchTitle=halfModal.getElementsByClassName('section-title')[0]
-
-
-//cart
-
-// const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
-// const payBill=document.getElementsByClassName('pay-bill')[0]
-
-///////////////////server functions////////////////////
-
-// const renderImages=()=>{
-//     const url='http://localhost:3000/books/get-all'
-
-//     fetch(url).then((res)=>{
-//         if(res.ok){
-//            return res.json()
-//         }
-//         else{
-//             throw new Error(res.status)
-//         }
-//     }).then((jsonObj)=>{
-//        const recommendedsBooksUrl=jsonObj.filter(img=>img.recommended).map(img=>img.imageUrl)
-//        const recommendedsBooksId=jsonObj.filter(img=>img.recommended).map(img=>img._id)
-//        const recommendedsBooks=recommendedsContainer.getElementsByClassName('gallery-cell')
-
-//        const salesBooksUrl=jsonObj.filter(img=>img.sale).map(img=>img.imageUrl)
-//        const salesBooksId=jsonObj.filter(img=>img.sale).map(img=>img._id)
-//        const salesBooks=salesContainer.getElementsByClassName('gallery-cell')
-
-//        const newBooksUrl=jsonObj.filter(img=>img.new).map(img=>img.imageUrl)
-//        const newBooksId=jsonObj.filter(img=>img.new).map(img=>img._id)
-//        const newBooks=newBooksContainer.getElementsByClassName('gallery-cell')
-
-
-//        for(let i=0;i<recommendedsBooks.length;i++){
-//            recommendedsBooks[i].style.backgroundImage=`url(${recommendedsBooksUrl[i]})`
-//            recommendedsBooks[i].id=recommendedsBooksId[i]
-//            salesBooks[i].style.backgroundImage=`url(${salesBooksUrl[i]})`
-//            salesBooks[i].id=salesBooksId[i]
-//            newBooks[i].style.backgroundImage=`url(${newBooksUrl[i]})`
-//            newBooks[i].id=newBooksId[i]
-//        }
-//     })  
-// }
-
-// const renderBookInfo=(book)=>{
-//     console.log(book.id)
-//     localStorage.setItem('bookId',book.id)
-//      const url=`http://localhost:3000/books/get/${book.id}`
-   
-//      fetch(url).then((res)=>{
-//         if(res.ok){
-//            return res.json()
-//         }
-//         else{
-//             throw new Error(res.status)
-//         }
-//     }).then((jsonObj)=>{
-//         booksInfoBookImg.style.backgroundImage=`url(${jsonObj.imageUrl})`;
-//         booksInfoBookName.innerHTML=jsonObj.bookName;
-//         booksInfoAuthorName.innerHTML=jsonObj.authorName;
-//         booksInfoBookPrice.innerHTML=`ספר דיגיטלי: ${jsonObj.price} ש"ח`;
-//         booksInfoBookPages.innerHTML= `מספר עמודים: ${jsonObj.pagesNum} `;
-//         booksInfoBookGenre.innerHTML=`ז'אנר: ${jsonObj.genres} `;
-//     })
-// }
 
 
 ///////////////////////////////////////////general/////////////////////////////////////////////////////
@@ -127,34 +8,95 @@ const booksSearchTitle=halfModal.getElementsByClassName('section-title')[0]
 const msgModal=document.getElementById('msg-modal')
 const header=document.getElementsByClassName('header')[0]
 const chooseOptions=document.getElementsByClassName('choose-options')[0]
+let isEdit=true
+//header
+const mainSearchForm=document.getElementsByClassName('search-book')[0]
+//login modals
+const modalBackground=document.getElementById('modal-bg')
+const loginForm=document.getElementById('login-form')
+const loginErrorMsg=document.getElementById('login-error-msg')
+let token=''
+const mustLoggedInModal=document.getElementById('mustLoggedInModal')
+const mustLoggedInButton=document.getElementById('mustLoggedInButton')
+const books=document.getElementsByClassName('gallery-cell')
+
+
+//books search modals
+const booksSearchModalBg=document.getElementsByClassName('books-search-modal-bg')[0]
+const booksSearchModal=booksSearchModalBg.getElementsByClassName('books-search-modal')[0]
+const searchedBooksContainer=document.querySelector('#searched-books-container');
+const booksSearchTitle=booksSearchModalBg.getElementsByClassName('section-title')[0]
 
 //functions
 const openMsgModal=(msg)=>{
     msgModal.classList.remove("display-none")
     msgModal.children[0].innerHTML=msg
 }
+
+const closeBooksSearchModalBg=()=>{
+    booksSearchModalBg.classList.add('display-none')
+}
+
+
 ///////////////////////////////////////////add book////////////////////////////////////////////////////
 
 //elements
 const addBookBtn=document.getElementById('book-add-btn')
 const addBookPanelContainer=document.getElementById('book-add-panel-container')
-
+const addBookPanel=document.getElementById('addBookPanel')
 //events
 addBookBtn.addEventListener('click',()=>{
     mainSearchForm.classList.add('display-none')
     openAddBookPanel()
     closeEditBookPanel()
+    addBookBtn.disabled=true
+    bookRemoveBtn.classList.remove('chosenOption')
+    editBookBtn.classList.remove('chosenOption')
+    addBookBtn.classList.add('chosenOption')
 })
+
+addBookPanel.addEventListener('submit',()=>{})
+
 
 
 //functions
 const openAddBookPanel=()=>{
     addBookPanelContainer.classList.remove('display-none')
+    closeEditBookPanel()
+    closeRemoveBookPanel()
+    closeBooksSearchModalBg()
 }
 
 const closeAddBookPanel=()=>{
     addBookPanelContainer.classList.add('display-none')
 }
+
+
+addBookPanel.addEventListener('submit',(event)=>{
+    event.preventDefault()
+    const bookData=createObjData(event.target)
+    addNewBook(bookData)
+    openMsgModal('מברוק:)<br> הוספת ספר חדש לחנות!')
+    setTimeout(()=>{
+        location.reload();
+    },1000)
+})
+
+//fetch
+const addNewBook=(bookData)=>{
+    token=localStorage.getItem('token')
+    const url=`http://localhost:3000/books/add`
+    const options={
+        method: 'POST', 
+        headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify(bookData)
+    }
+    fetch(url,options)
+}
+
 
 
 ///////////////////////////////////////////edit book////////////////////////////////////////////////////
@@ -166,9 +108,16 @@ const editBookPanel=document.getElementsByClassName('book-panel')[0]
 
 //events
 editBookBtn.addEventListener('click',()=>{
+    isEdit=true
     openMainSearchForm()
     closeAddBookPanel()
+    closeRemoveBookPanel()
     mainSearchForm.value=''
+    editBookBtn.disabled=true
+
+    bookRemoveBtn.classList.remove('chosenOption')
+    editBookBtn.classList.add('chosenOption')
+    addBookBtn.classList.remove('chosenOption')
 
 })
 editBookPanel.addEventListener('submit',(event)=>{
@@ -193,6 +142,9 @@ const openEditBookPanel=(bookId)=>{
     editBookPanelContainer.classList.remove('display-none')
     restartInputValues()
     renderBookDetails(bookId)
+    closeAddBookPanel()
+    closeRemoveBookPanel()
+    closeBooksSearchModalBg()
 }
 const restartInputValues=()=>{
     for (let child of editBookPanel.children){
@@ -215,7 +167,7 @@ const createObjData =(form)=>{
         price:form[5].value
     }
     for (let field in objData ){
-        if(objData[field]==="")
+        if(objData[field]==="" || objData[field]===undefined)
            delete objData[field]
     }
 
@@ -250,9 +202,19 @@ const renderBooksImagesBySearch=(searchValue)=>{
            galleryCell.style.backgroundImage=`url(${seachedBooksUrl[i]})`
            galleryCell.id=searchedBooksId[i]
            galleryCell.addEventListener('click', ()=>{
-               openEditBookPanel(galleryCell.id)
+               if(isEdit){
+                 openEditBookPanel(galleryCell.id)
+                 localStorage.setItem('edit-book-id',galleryCell.id)
+               }
+               else{
+                 openRemoveBookPanel(galleryCell.id)
+                 localStorage.setItem('remove-book-id',galleryCell.id)
+               }
+                  
                localStorage.setItem('edit-book-id',galleryCell.id)
                closeAddBookPanel()
+               booksSearchModalBg.classList.add('display-none')
+               mainSearchForm.value=''
            }) 
        }
     })  
@@ -272,6 +234,7 @@ const renderBookDetails=(bookId)=>{
     .then(res=>res.json())
     .then(book=>{
         console.log(book)
+        removeBookName.innerHTML=book.bookName+'/ '+book.authorName
         currentBookName.innerHTML=book.bookName
         currentAuthorName.innerHTML=book.authorName
         currentGenre.innerHTML=book.genres
@@ -297,6 +260,72 @@ const updateBookDetailes=(bookData,bookId)=>{
     }
     fetch(url,options)
 }
+
+
+///////////////////////////////////////////remove book////////////////////////////////////////////////////
+
+//elements
+
+const bookRemovePanelContainer=document.getElementById('book-remove-panel-container')
+const bookRemoveBtn=document.getElementById('book-remove-btn')
+const removeBookName=document.getElementById('removeBookName')
+const removeBookPanel=document.getElementById('removeBookPanel')
+
+//events
+
+bookRemoveBtn.addEventListener('click',()=>{
+        isEdit=false
+        openMainSearchForm()
+        closeAddBookPanel()
+        closeEditBookPanel()
+        mainSearchForm.value=''
+        bookRemoveBtn.disabled=true
+        bookRemoveBtn.classList.add('chosenOption')
+        editBookBtn.classList.remove('chosenOption')
+        addBookBtn.classList.remove('chosenOption')
+   })
+
+
+//functions
+
+const openRemoveBookPanel=(bookId)=>{
+    bookRemovePanelContainer.classList.remove('display-none')
+    // renderBookDetails(bookId)
+    restartInputValues()
+    renderBookDetails(bookId)
+    closeBooksSearchModalBg()
+    
+}
+
+const closeRemoveBookPanel=()=>{
+    bookRemovePanelContainer.classList.add('display-none')
+}
+
+removeBookPanel.addEventListener('submit',(event)=>{
+    event.preventDefault()
+    deleteBook(localStorage.getItem('edit-book-id'))
+    openMsgModal('מצויין:)<br> כל הפרטים עודכנו!')
+    setTimeout(()=>{
+        location.reload();
+    },1000)
+    localStorage.removeItem('edit-book-id');
+})
+
+//fetch functions
+const deleteBook=(bookId)=>{
+    token=localStorage.getItem('token')
+    const url=`http://localhost:3000/books/remove/${bookId}`
+    const options={
+        method: 'POST', 
+        headers: {
+           'Content-Type': 'application/json',
+           'Authorization': `Bearer ${token}`
+        }    }
+    fetch(url,options)
+}
+
+
+
 
 ///////////////////////////////////////////////////
 
@@ -357,41 +386,30 @@ const addUserToDB=(userData)=>{
        .then(response => response.json())
        .then(data=>{
            console.log(data.user.email,data.user.password)
-           swichToLogin()
        })
        .catch((err)=>{
-           alert(err)
        })
       
 }
 
-const loginUser= async (userLoginData)=>{
-    const userData=userLoginData
+const loginAdmin= async (adminLoginData)=>{
     const options={
         method: 'POST', 
         headers: {
            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(adminLoginData)
     }
-   fetch('http://localhost:3000/users/login',options)
+   fetch('http://localhost:3000/admin/login',options)
    .then(response => response.json())
    .then(data => {
-    if(data.user){
-        // headerUserName.innerHTML=`שלום, ${data.user.name}`
-        // headerLogoutBtn.innerHTML='התנתקות'
-        // userLoggedinTools.classList.remove('display-none')
-        // payBill.classList.remove('display-none')
-        // purchasedBooksCounter.innerHTML=data.user.purchasedBooks.length
-        // purchasedBooksCounter.innerHTML=data.user.purchasedBooks.length
-        // if(data.user.purchasedBooks.length>0)
-        //    purchasedBooksCounter.classList.remove('display-none')
-        chooseOptions.classList.remove('display-none')
-        header.classList.remove('display-none')
-        token= localStorage.setItem('token',data.token)
-
-        console.log(data)
-        closeModal()
+    if(data.admin){
+    
+        // chooseOptions.classList.remove('display-none')
+        // header.classList.remove('display-none')
+        // token= localStorage.setItem('token',data.token)
+        // console.log(data)
+        // closeModal()
     }
     else{
         showLoginErrorMsg('נראה שלא הצלחת להתחבר...<br> אולי הסיסמא או המייל לא נכונים?')
@@ -443,8 +461,6 @@ const logoutAll=()=>{
 
 const closeModal=()=>{
     closeLoginModal()
-    closeSignupModal()
-    // closeBooksModal()
 
     refreshFormsInputs()
 }
@@ -458,36 +474,20 @@ const refreshFormsInputs =()=>{
 }
 const openLoginModal=()=>{
     modalBackground.classList.remove('display-none')
+    modalBackground.style.zIndex=5
+
     loginErrorMsg.classList.add('display-none')
-    signUpErrorMsg.classList.add('display-none')
-    if(!window.matchMedia("(max-width: 800px)").matches)
-        loginForm.style.transform='translateX(60%)'
     loginForm.classList.remove('display-none')
 }
+openLoginModal()
+
 
 const closeLoginModal=()=>{
     modalBackground.classList.add('display-none')
-    if(!window.matchMedia("(max-width: 800px)").matches)
-        loginForm.style.transform='translateX(-60%)'
+    modalBackground.style.zIndex=-1
     loginForm.classList.add('display-none')
 }
 
-const openSignupModal=()=>{
-    modalBackground.classList.remove('display-none')
-    if(!window.matchMedia("(max-width: 800px)").matches)
-        signupForm.style.transform='translateX(-50%)'
-    signupForm.classList.remove('display-none')
-}
-const closeSignupModal=()=>{
-    modalBackground.classList.add('display-none')
-    if(!window.matchMedia("(max-width: 800px)").matches)
-        signupForm.style.transform='translateX(50%)'
-    signupForm.classList.add('display-none')
-   
-}
-// const closeBooksModal=()=>{
-//     booksInfoModal.classList.add('display-none')
-// }
 
 const openLoginForm=()=>{
     if(!window.matchMedia("(max-width: 800px)").matches)
@@ -500,27 +500,9 @@ const closeLoginForm=()=>{
          loginForm.style.transform='translateX(-60%)'
     loginForm.classList.add('display-none')
 }
-const openSignupForm=()=>{
-    if(!window.matchMedia("(max-width: 800px)").matches)
-         signupForm.style.transform='translateX(-50%)'
-    signupForm.classList.remove('display-none')
-    signUpErrorMsg.classList.add('display-none')
 
-}
-const closeSignupForm=()=>{
-    if(!window.matchMedia("(max-width: 800px)").matches)
-         signupForm.style.transform='translateX(50%)'
-    signupForm.classList.add('display-none')
-}
 
-const swichToLogin=()=>{
-    openLoginForm()
-    closeSignupForm()
-}
-const swichToSignup=()=>{
-    openSignupForm()
-    closeLoginForm()
-}
+
 
 
 
@@ -545,7 +527,7 @@ const isValidForm=(form)=>{
 }
 
 const closeSearchBooksModal=()=>{
-    halfModal.classList.add('display-none')
+    booksSearchModalBg.classList.add('display-none')
 }
 
 const showLoginErrorMsg=(msg)=>{
@@ -574,38 +556,12 @@ mainSearchForm.classList.add('display-none')
 mainSearchForm.addEventListener("keyup",(event)=>{
     let searchValue=mainSearchForm.value.trim()
     if(searchValue!=='' && event.key!=='Backspace')
-        halfModal.classList.remove('display-none')
+       booksSearchModalBg.classList.remove('display-none')
     else
         searchValue='emptyValue'
     renderBooksImagesBySearch(searchValue)
 })
 
-window.addEventListener('scroll',()=>{
-    if(!window.matchMedia("(max-width: 500px)").matches){
-        // halfModal.classList.add('display-none')
-        // mainSearchForm.value=''
-    }
-  
-})
-
-
-switchToSignUpBtn.addEventListener('click', swichToSignup)
-switchToLoginBtn.addEventListener('click',swichToLogin)
-
-
-headerLoginBtn.addEventListener('click',openLoginModal)
-headerLogoutBtn.addEventListener('click',logout)
-
-window.addEventListener('click' ,(event)=> {
-    if (event.target===modalBackground||event.target.className==="fas fa-times")
-        closeModal()
-        closeSearchBooksModal()
-  })
-
-loginForm.addEventListener('submit',(event)=>{
-    event.getPreventDefault
-    
-})
 
 //mouseover and keyup
 const events=['mouseover','keyup']
@@ -615,7 +571,6 @@ for (let event of events){
             if(isValidForm(form)){
                 form.querySelector('button').classList.remove('disableSubmit')
                 form.querySelector('button').classList.add('enableSubmit')
-                signupFormBtn.disabled=false
 
             }
             else{
@@ -628,58 +583,18 @@ for (let event of events){
 }
 
 
-//blur
-signupForm.name.addEventListener('blur', ()=>{
-   if(!signupForm.name.value.length>0){
-     signupForm.name.value='נא כתבו את שמכם...'
-     signupForm.name.classList.add('warning')
-   }
-})
-signupForm.age.addEventListener('blur', ()=>{
-    if(!signupForm.age.value.length>0){
-        signupForm.age.value='נא ציינו את גילכם...'
-        signupForm.age.classList.add('warning')
-    }
-    else if(signupForm.age.value<=12){
-        signupForm.age.classList.add('warning')
-        signupForm.age.value='הרשמה אפשרית מעל גיל 12...'
-    }
- })
-
-
- //focus
- for(let child of signupForm){
-     child.addEventListener('focus',()=>{
-         child.value=''
-         child.classList.remove('warning')
-     })
- }
-
-
-
-
-signupForm.addEventListener('submit',(event)=>{
-    // event.getPreventDefault
-    event.preventDefault()
-
-    const userData={
-        name:signupForm.name.value,
-        age:signupForm.age.value,
-        email:signupForm.email.value,
-        password:signupForm.password.value
-    }
-
-    addUserToDB(userData)    
-})
-
-
 loginForm.addEventListener('submit',(event)=>{
     event.preventDefault()
-    const userLoginData={
+    const adminLoginData={
         email:loginForm.email.value,
         password:loginForm.password.value
     }
-    loginUser(userLoginData)
+    // loginAdmin(adminLoginData)
+    chooseOptions.classList.remove('display-none')
+    header.classList.remove('display-none')
+    // token= localStorage.setItem('token',data.token)
+    // console.log(data)
+    closeModal()
 })
 
 for (let book of books)
@@ -692,115 +607,3 @@ for (let book of books)
         }, 400);
     })
 }
-
-
-
-// //*************cart***************
-
-// //elements
-// const cartModalBg=document.getElementById("cart-modal-bg")
-// const cartModal=document.getElementsByClassName("cart-modal")[0]
-// // const purchasedBooksContainer=document.getElementsByClassName('purchased-books-container')[0]
-// const payBtn=document.getElementsByClassName('pay-btn')[0]
-// const cartMainIcon=document.getElementsByClassName('utils-container')[0].getElementsByClassName('fa-shopping-cart')[0]
-// const purchasedCartIcon=document.getElementsByClassName('cart-icon')[0]
-// const purchasedBooksCounter=document.getElementsByClassName('purchased-books-counter')[0]
-// //functions
-// const openPurchasedBooksModal=()=>{
-//     cartModal.classList.remove('display-none')
-//     cartModalBg.classList.remove('display-none')
-// }
-// const closePurchasedBooksModal=()=>{
-//     cartModal.classList.add('display-none')
-//     cartModalBg.classList.add('display-none')
-// }
-
-
-// const bookPurchased=(bookId)=>{
-//         token=localStorage.getItem('token')
-//         fetch(`/users/bookPurchase/${bookId}`, {
-//             method: 'POST', 
-//             headers: {
-//                'Content-Type': 'application/json',
-//                'Authorization': `Bearer ${token}`   
-//             }
-//             })
-//             .then(response =>{ 
-//                 if(response.status!==200)
-//                    throw Error()
-//                 return response.json()  
-//             })
-//             .then(data=>{
-//                 console.log(data)
-//                 purchasedBooksCounter.classList.remove('display-none')
-//                 purchasedBooksCounter.innerHTML=data.length
-//              })
-//             .catch((err)=>{
-//                 closeBooksModal()
-//                 mustLoggedInModal.classList.remove('display-none')
-//             })
-           
-//      }
-
-// const closeMustLoginModal=()=>{
-//     mustLoggedInModal.classList.add('display-none')
-
-// }
-// const renderPurchasedBooks=(purchasedBooksImgUrl)=>{
-    
-// }
-
-// const removeBookFromCart=(bookId)=>{
-//       token=localStorage.getItem('token')
-//         fetch(`/users/bookUnPurchase/${bookId}`, {
-//             method: 'POST', 
-//             headers: {
-//                'Content-Type': 'application/json',
-//                'Authorization': `Bearer ${token}`   
-//             }
-//             })
-//             .then(response =>{ 
-//                 if(response.status!==200)
-//                    throw Error()
-//                 return response.json()  
-//             })
-//             .then(data=>{
-//                 console.log(data)
-//                 openPurchasedBooksModal()
-//                 renderBooksImagesById()
-//                 // purchasedBooksCounter.classList.remove('display-none')
-//                 // purchasedBooksCounter.innerHTML=data.length
-//              })
-//             .catch((err)=>{
-//                 closeBooksModal()
-//                 mustLoggedInModal.classList.remove('display-none')
-//             })
-          
-// }
-
-// //events
-
-// window.addEventListener('click',(event)=>{
-//     if(event.target===cartModalBg || event.target.className==="fas fa-times" && !event.target.classList.contains('remove-book-btn') ){
-//         closePurchasedBooksModal()
-//         closeMustLoginModal()
-//     }
-// })
-
-// purchasedCartIcon.addEventListener('click',()=>{
-//     closeModal()
-//     bookPurchased(localStorage.getItem('bookId'))
-// })
-
-// mustLoggedInButton.addEventListener('click', ()=>{
-//     modalBackground.classList.remove('dispaly-none')
-//     closeMustLoginModal()
-//     openLoginModal()
-// })
-
-
-
-///////on load
-signupFormBtn.disabled=true
-// // loginFormBtn.disabled=true
-// renderImages()

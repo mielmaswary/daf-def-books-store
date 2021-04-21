@@ -1,8 +1,43 @@
 
+.header{
+    justify-content: center;
+     @media (max-width:800px) {
+        height: 90px;
+    }
+}
+
 .choose-options{
     .options{
         display: flex;
+        .button{
+            opacity: 80%;
+            outline: none;
+
+        }
+        :hover{
+            opacity: 1;
+        }
+        @media(max-width:800px) {
+            *{
+                font-size: 17px;
+            }
+        }
+        @media(max-width:500px) {
+            *{
+                font-size: 14px;
+                width: 100%;
+            }
+            flex-direction: column;
+            
+        }
     }
+  
+}
+
+.chosenOption{
+    background-color: rgb(255, 255, 255);
+    color: #f25;
+    font-weight: 600;
 }
 
 .search-book{
@@ -10,13 +45,17 @@
     width: 100%;
     height: 50px;
     margin: auto;
+    border: #f25;
+    &:focus{
+        outline: #f25;
+    }
 }
 
 
 .book-panel{
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
     margin: auto;
     div{
         position: relative;
@@ -35,6 +74,7 @@
             padding: 2px;
             margin: 2px;
             height: 50px;
+            outline: #f25;
         }
         #check-img{
             position: absolute;
@@ -57,11 +97,6 @@
         margin: 2px;
         padding: 5px;
     }
-}
-
-.half-modal{
-    top: 50vh;
-
 }
 
 .msg-modal{
@@ -87,5 +122,245 @@
         text-align: center;
         transform: translateY(-50%);
 
+    }
+}
+.modal{
+    display: block;
+    form{
+      display: flex;
+      width: 40%;
+      height: 70%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: rgb(255, 255, 255);
+      border-radius: 4px;
+      padding: 5px;
+      transition:transform 0.2s, opacity 0.4s ease-in-out;
+      position: relative;
+      @media (max-width:800px){
+         width: 85vw;
+         height: 80vh;
+        position: fixed;
+        transform: translateX(8px);
+      }
+   
+      .fa-times{
+       font-size:35px;
+       color: rgb(163, 157, 157);
+       position: absolute;
+       top: 8px;
+       left: 8px;
+       opacity: 80%;
+      }
+      :hover{
+        opacity: 1;
+      }
+ 
+      .modal-title{
+        padding: 8px;
+        font-size: 30px;
+        text-align: center;
+        color:#333333
+      }
+      input,button{
+        width: 60%;
+        padding: 15px;
+        margin: 2px;
+        border-radius: 4px;
+        border:solid #dfd7d7 1px;
+        outline: #f25;
+        
+      }
+      button{
+        font-size: 20px;
+        color: #ffffff;
+        box-shadow: 1px 1px 5px #333333;
+      }
+      .enableSubmit{
+         background-color:#f25;
+      }
+      .disableSubmit{
+         background-color:rgb(235, 160, 177);
+      }
+ 
+      .warning{
+        color:red;
+      }
+      .error-msg{
+        width: 80%;
+        color:red;
+        text-align: center;
+      }
+    }
+    .switch-title{
+      font-size: 18px;
+      padding: 15x;
+    }
+
+}
+
+#modal-bg{
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(29, 26, 26, 0.829);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    transition: opacity 0.1s ease-in-out;
+    #login-form {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 40%;
+        height: 70%;
+        background-color:#ffffff;
+        transform: translate(-50%,-50%);
+        align-items: center;
+        display: flex;
+        width: 40%;
+        height: 70%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 4px;
+        padding: 5px;
+        transition:transform 0.2s, opacity 0.4s ease-in-out;
+        :hover{
+            opacity: 1;
+          }
+     
+          .modal-title{
+            padding: 8px;
+            font-size: 30px;
+            text-align: center;
+            color:#333333
+          }
+          input,button{
+            width: 60%;
+            padding: 15px;
+            margin: 2px;
+            border-radius: 4px;
+            border:solid #dfd7d7 1px;
+            outline: #f25;
+            
+          }
+          button{
+            font-size: 20px;
+            color: #ffffff;
+            box-shadow: 1px 1px 5px #333333;
+          }
+          .enableSubmit{
+             background-color:#f25;
+          }
+          .disableSubmit{
+             background-color:rgb(235, 160, 177);
+          }
+     
+          .warning{
+            color:red;
+          }
+          .error-msg{
+            width: 80%;
+            color:red;
+            text-align: center;
+          }
+          @media (max-width:800px) {
+            width: 70%;
+          }
+          @media (max-width:500px) {
+            width: 90%;
+          }
+    }
+
+    
+}
+
+
+.books-search-modal-bg{
+    width: 100%;
+    min-height: 50vh;
+    background-color:rgba(29, 26, 26, 0.829);
+    filter: blur();
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: absolute;
+    top: 47vh;
+    z-index: 3;
+    transition: opacity 0.1s ease-in-out;
+    border-radius: 0;
+    padding: 15px;
+    @media(max-width:500px){
+    //  min-height:100vh;
+     top: 16vh;
+    }
+    .books-search-modal{
+        .fas.fa-times{
+           font-size: 25px;
+        }
+        // width: auto;
+        min-width: 300px;
+        // height: auto;
+        min-height: 30px;
+        margin:8px auto;
+        background-color: #ffffff;
+        position: relative;
+        @media(max-width:500px){
+            width: 100%;
+            min-height: 70vh;
+            min-width: auto;
+            .fas.fa-times{
+                display: block;
+            }
+        }
+         .section-title{
+             border: none;
+             margin: 8px 4px;
+             width: 100%;
+             height: 100%;
+             @media(max-width: 800px){
+                 font-size:16px;
+             }
+             @media(max-width: 500px){
+                 font-size:13px;
+             }
+         }
+        .searched-books{
+            width: auto;
+            height: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-items:center;
+            margin: auto;
+          
+            .book{
+               width: 102px;
+               height: 160px;
+               background-position:center;
+               background-repeat: no-repeat;
+               background-size: contain;
+               margin: 8px;
+               @media(max-width: 800px){
+                  width: 75px;
+                  height: 130px;
+               }
+               @media(max-width: 500px){
+                  width: 55px;
+                  height: 110px;
+                  margin: 3px;
+               }
+              .fas.fa-times{
+                font-size: 10px;
+                color: #f25;
+              }
+              
+            }
+        }
+       
     }
 }

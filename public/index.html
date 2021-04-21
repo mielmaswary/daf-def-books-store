@@ -79,7 +79,6 @@
            <div class="gallery-cell"></div>
      </div>
   </div>
-
   <div class="gallery-container">
       <div class="section-title">ספרים חדשים</div>
       <div id="new-books" class="gallery mid js-flickity" data-flickity-options='{ "wrapAround": true }'>
@@ -93,7 +92,7 @@
  </div>
  
 
-<div class="modal display-none">
+<div id="loginModalBg" class="modal-bg display-none">
     <form class="display-none" action="">
         <div class="modal-title">יצירת חשבון חדש</div>
         <input type="text" name="name" placeholder="שם">
@@ -114,10 +113,8 @@
         <div id="switch-to-signup" class="switch-title">עדיין אין לך חשבון?</div>
         <div id="login-error-msg" class="error-msg display-none"></div>
     </form>
-
-    
 </div>
-<div id="mustLoggedInModal" class="modal display-none">
+<div id="mustLoggedInModal" class="modal-bg display-none">
     <div class="must-be-logged-in-msg">
          <h3>רגע רגע, קודם צריך להתחבר...</h3>
           <a id="mustLoggedInButton" class="button">להתחברות</a>
@@ -125,7 +122,7 @@
     </div>
 
  </div>
-<div class="modal display-none">
+<div id="book-info-modal-bg"class="modal-bg display-none">
     <div class="book-info-modal">
         <div class="book-title">
             <div class="book-name"></div>
@@ -167,7 +164,7 @@
 </div>
 
 
-<div class="modal display-none" id='cart-modal-bg'>
+<div class="modal-bg display-none" id='cart-modal-bg'>
     <div class="cart-modal display-none">
         <i class="fas fa-times"></i>
         <div class="title">עגלת קניות

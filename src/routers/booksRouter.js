@@ -39,14 +39,18 @@ router.get('/books/get/:id', async (req,res)=>{
 router.get('/books/get-by-id', auth, async (req,res)=>{
     const purchasedsBooksIds=req.user.purchasedBooks
     try{
+        console.log('books!')
         const books=[]
         if(purchasedsBooksIds.length>0){
            for(let bookId of purchasedsBooksIds){
                 let book= await Book.findById(bookId)
                 books.push(book)
            }
+
         }
         res.send(books)
+        console.log(books)
+
     }catch (err) {
 		res.status(400).send({
 			status: 400,

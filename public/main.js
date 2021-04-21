@@ -3,6 +3,8 @@
 // const { eventNames } = require("../src/models/bookModel")
 
 // const User = require("../src/models/userModel")
+let expirationTime=0;
+let expirationTimeLeft=undefined;
 //header
 const utilsContainer=document.getElementsByClassName('utils-container')[0]
 const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
@@ -23,7 +25,7 @@ const footerGenres=footer.getElementsByClassName('footer-genres')[0]
 const footerSales=footer.getElementsByClassName('footer-sales')[0]
 
 //login modals
-const modalBackground=document.getElementsByClassName('modal')[0]
+const modalBackground=document.getElementById('loginModalBg')
 const signupForm=modalBackground.children[0]
 const loginForm=modalBackground.children[1]
 const switchToSignUpBtn=document.querySelector('#switch-to-signup')
@@ -37,7 +39,7 @@ const mustLoggedInModal=document.getElementById('mustLoggedInModal')
 const mustLoggedInButton=document.getElementById('mustLoggedInButton')
 
 //books info modals
-const booksInfoModal=document.getElementsByClassName('modal')[2]
+const booksInfoModalBg=document.getElementById('book-info-modal-bg')
 const booksInfoBookName=document.getElementsByClassName('book-name')[0]
 const booksInfoAuthorName=document.getElementsByClassName('author-name')[0]
 const booksInfoBookImg=document.getElementsByClassName('info-img')[0]
@@ -149,7 +151,6 @@ const renderBooksImagesBySearch=(searchValue)=>{
 
 const renderBooksImagesById=()=>{
     token=localStorage.getItem('token')
-    alert(document.cookie)
     const options={
         method: 'GET', 
         headers: {
@@ -210,7 +211,6 @@ const addUserToDB=(userData)=>{
            swichToLogin()
        })
        .catch((err)=>{
-           alert(err)
        })
       
 }
@@ -224,7 +224,7 @@ const loginUser= async (userLoginData)=>{
         },
         body: JSON.stringify(userData)
     }
-   fetch('http://localhost:3000/users/login',options)
+    fetch('http://localhost:3000/users/login',options)
    .then(response => response.json())
    .then(data => {
     if(data.user){
@@ -236,8 +236,10 @@ const loginUser= async (userLoginData)=>{
         purchasedBooksCounter.innerHTML=data.user.purchasedBooks.length
         if(data.user.purchasedBooks.length>0)
            purchasedBooksCounter.classList.remove('display-none')
-        token= localStorage.setItem('token',data.token)
-        console.log(data)
+        localStorage.setItem('token',data.token)
+        expirationTime=data.expirationTime
+        expirationTimeLeft=expirationTime-Date.now()
+        timeOverAlert()
         closeModal()
     }
     else{
@@ -335,7 +337,7 @@ const closeSignupModal=()=>{
    
 }
 const closeBooksModal=()=>{
-    booksInfoModal.classList.add('display-none')
+    booksInfoModalBg.classList.add('display-none')
 }
 
 const openLoginForm=()=>{
@@ -446,7 +448,7 @@ headerLoginBtn.addEventListener('click',openLoginModal)
 headerLogoutBtn.addEventListener('click',logout)
 
 window.addEventListener('click' ,(event)=> {
-    if (event.target===modalBackground|| event.target===booksInfoModal || event.target.className==="fas fa-times")
+    if (event.target===modalBackground|| event.target===booksInfoModalBg || event.target.className==="fas fa-times")
         closeModal()
         closeSearchBooksModal()
   })
@@ -539,13 +541,11 @@ for (let book of books)
     book.addEventListener('click',()=>{
         renderBookInfo(book)
         setTimeout(() => {
-            booksInfoModal.classList.remove('display-none')
+            booksInfoModalBg.classList.remove('display-none')
 
         }, 400);
     })
 }
-
-
 
 //*************cart***************
 
@@ -598,9 +598,9 @@ const closeMustLoginModal=()=>{
     mustLoggedInModal.classList.add('display-none')
 
 }
-const renderPurchasedBooks=(purchasedBooksImgUrl)=>{
+// const renderPurchasedBooks=(purchasedBooksImgUrl)=>{
     
-}
+// }
 
 const removeBookFromCart=(bookId)=>{
       token=localStorage.getItem('token')
@@ -666,6 +666,19 @@ let userLoginData={
     password: localStorage.getItem('userPassword')
 }
 
-if(userLoginData.email!==null)
-   loginUser(userLoginData)
 
+// setInterval(()=>{
+//     expirationTimeLeft=expirationTime-Date.now()
+// },1000)
+
+const timeOverAlert=()=>{
+    setTimeout(() => {
+        alert('time over!')
+    }, expirationTimeLeft);
+}
+
+   
+
+
+
+ 
