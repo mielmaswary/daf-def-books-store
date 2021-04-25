@@ -1,12 +1,12 @@
 const express=require('express')
 const Book = require('../models/bookModel')
 const User = require('../models/userModel')
-const auth = require("../middleware/auth");
+const auth = require("../middleWare/auth");
 
 const router=new express.Router()
 
 
-router.get('/books/get-all', async (req,res)=>{
+router.get('books/get-all', async (req,res)=>{
 
     try{
        const books=await Book.find()
