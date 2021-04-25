@@ -16,8 +16,8 @@ app.use(express.static(publicDir))
 app.use(express.json())
 app.use(cors())
 app.use(booksRouters)
-app.use(usersRouters)
-app.use(adminRouters)
+// app.use(usersRouters)
+// app.use(adminRouters)
 
 app.listen(port,()=>{
    console.log('yessss! we are on port',port)
