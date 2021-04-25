@@ -38,18 +38,7 @@ router.patch("/users/edit", auth, async (req, res) => {
 	}
 
 	try {
-		// const user = await User.findByIdAndUpdate(_id, req.body, {
-		// 	new: true, // return new document
-		// 	runValidators: true, // להריץ ולידטורים של הסכימה
-		// });
-		// const user = await User.findById(_id);
-
-		// if (!user) {
-		// 	return res.status(404).send({
-		// 		status: 404,
-		// 		message: "wrong id",
-		// 	});
-		// }
+	
 		for (let update in req.body) {
 			req.user[update] = req.body[update];
 		}

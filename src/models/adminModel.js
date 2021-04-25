@@ -89,21 +89,6 @@ adminSchema.methods.generateAuthToken = async function () {
 	return token;
 };
 
-// userSchema.methods.toJSON = function () {
-// 	const user = this;
-// 	const userObj = user.toObject();
-
-// 	delete userObj.password;
-// 	delete userObj.tokens;
-
-// 	return userObj;
-// };
-
-// adminSchema.virtual("tasks", {
-// 	ref: "Task",
-// 	localField: "_id",
-// 	foreignField: "admin",
-// });
 
 adminSchema.pre("remove", async function (next) {
 	const admin = this;

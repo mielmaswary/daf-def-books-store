@@ -8,7 +8,6 @@ const adminRouters=require('./routers/adminRouters')
 const cookieParser = require('cookie-parser');
 
 const path=require('path')
-// const { dirname } = require('path')
 const publicDir=path.join(__dirname,'../public')
 require('./db/mongoose')
 

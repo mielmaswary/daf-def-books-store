@@ -1,10 +1,7 @@
 ///////////////////elements///////////////////////
-
-// const { eventNames } = require("../src/models/bookModel")
-
-// const User = require("../src/models/userModel")
 let expirationTime=0;
 let expirationTimeLeft=undefined;
+
 //header
 const utilsContainer=document.getElementsByClassName('utils-container')[0]
 const headerLoginBtn=utilsContainer.getElementsByClassName('fa-user')[0]
@@ -239,6 +236,9 @@ const loginUser= async (userLoginData)=>{
         localStorage.setItem('token',data.token)
         expirationTime=data.expirationTime
         expirationTimeLeft=expirationTime-Date.now()
+        localStorage.setItem('expirationTimeLeft',expirationTimeLeft)
+        localStorage.setItem('isLoggedIn',true)
+        localStorage.setItem('userData',userData)
         timeOverAlert()
         closeModal()
     }
@@ -263,6 +263,7 @@ const logout=()=>{
    .then(data => {
        userLoggedinTools.classList.add('display-none')
        purchasedBooksCounter.classList.add('display-none')
+       localStorage.clear();
        console.log(data)
 
     }).catch(error=>{
@@ -403,18 +404,6 @@ const showLoginErrorMsg=(msg)=>{
    loginErrorMsg.innerHTML=msg
    loginErrorMsg.classList.remove('display-none')
 }
-
-// const rslides=()=>{
-//     let slides=document.getElementsByClassName('rslides')[0]
-//     slides.responsiveSlides()
-//  }
-//  rslides()
-
-// //  $(function() {
-// //     $(".rslides").responsiveSlides();
-// //   });
-
-
 
 //////////////////eventListeners//////////////////
 
@@ -598,9 +587,7 @@ const closeMustLoginModal=()=>{
     mustLoggedInModal.classList.add('display-none')
 
 }
-// const renderPurchasedBooks=(purchasedBooksImgUrl)=>{
-    
-// }
+
 
 const removeBookFromCart=(bookId)=>{
       token=localStorage.getItem('token')
@@ -621,8 +608,6 @@ const removeBookFromCart=(bookId)=>{
                 console.log(data)
                 openPurchasedBooksModal()
                 renderBooksImagesById()
-                // purchasedBooksCounter.classList.remove('display-none')
-                // purchasedBooksCounter.innerHTML=data.length
              })
             .catch((err)=>{
                 closeBooksModal()
@@ -667,15 +652,21 @@ let userLoginData={
 }
 
 
-// setInterval(()=>{
-//     expirationTimeLeft=expirationTime-Date.now()
-// },1000)
-
 const timeOverAlert=()=>{
     setTimeout(() => {
-        alert('time over!')
-    }, expirationTimeLeft);
+        if(localStorage.getItem('isLoggedIn'))
+           location.reload();
+        logout()
+    }, localStorage.getItem('expirationTimeLeft'));
 }
+
+if(localStorage.getItem('isLoggedIn')){
+    loginUser(userLoginData)
+    timeOverAlert()
+    closeModal()
+}
+
+  
 
    
 

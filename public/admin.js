@@ -405,11 +405,6 @@ const loginAdmin= async (adminLoginData)=>{
    .then(data => {
     if(data.admin){
     
-        // chooseOptions.classList.remove('display-none')
-        // header.classList.remove('display-none')
-        // token= localStorage.setItem('token',data.token)
-        // console.log(data)
-        // closeModal()
     }
     else{
         showLoginErrorMsg('נראה שלא הצלחת להתחבר...<br> אולי הסיסמא או המייל לא נכונים?')
@@ -535,23 +530,6 @@ const showLoginErrorMsg=(msg)=>{
    loginErrorMsg.classList.remove('display-none')
 }
 
-// const rslides=()=>{
-//     let slides=document.getElementsByClassName('rslides')[0]
-//     slides.responsiveSlides()
-//  }
-//  rslides()
-
-// //  $(function() {
-// //     $(".rslides").responsiveSlides();
-// //   });
-
-
-
-//////////////////eventListeners//////////////////
-
-//mainSearchForm.addEventListener('click',()=>{
-   
-// })
 mainSearchForm.classList.add('display-none')
 mainSearchForm.addEventListener("keyup",(event)=>{
     let searchValue=mainSearchForm.value.trim()

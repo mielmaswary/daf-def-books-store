@@ -93,7 +93,7 @@ userSchema.methods.generateAuthToken = async function () {
 		},
 		process.env.secret,
 		{
-			expiresIn: "5s",
+			expiresIn: "20s",
 		}
 	);
 	user.tokens = user.tokens.concat({ token });
@@ -104,15 +104,6 @@ userSchema.methods.generateAuthToken = async function () {
 	return token;
 };
 
-// userSchema.methods.toJSON = function () {
-// 	const user = this;
-// 	const userObj = user.toObject();
-
-// 	delete userObj.password;
-// 	delete userObj.tokens;
-
-// 	return userObj;
-// };
 
 userSchema.virtual("tasks", {
 	ref: "Task",
