@@ -62,7 +62,7 @@ const payBill=document.getElementsByClassName('pay-bill')[0]
 ///////////////////server functions////////////////////
 
 const renderImages=()=>{
-    const url='http://localhost:3000/books/get-all'
+    const url='/books/get-all'
 
     fetch(url).then((res)=>{
         if(res.ok){
@@ -99,7 +99,7 @@ const renderImages=()=>{
 const renderBookInfo=(book)=>{
     console.log(book.id)
     localStorage.setItem('bookId',book.id)
-     const url=`http://localhost:3000/books/get/${book.id}`
+     const url=`/books/get/${book.id}`
    
      fetch(url).then((res)=>{
         if(res.ok){
@@ -120,7 +120,7 @@ const renderBookInfo=(book)=>{
 
 
 const renderBooksImagesBySearch=(searchValue)=>{
-    const url=`http://localhost:3000/books/${searchValue}`
+    const url=`/books/${searchValue}`
 
     fetch(url).then((res)=>{
         if(res.ok){
@@ -155,7 +155,7 @@ const renderBooksImagesById=()=>{
            'Authorization': `Bearer ${token}`
         }
     }
-    fetch(`http://localhost:3000/books/get-by-id`,options)
+    fetch(`/books/get-by-id`,options)
     .then(res=>res.json())
     .then(books=>{
         let totalPay=0
@@ -195,7 +195,7 @@ const renderBooksImagesById=()=>{
 
 const addUserToDB=(userData)=>{
 
-   fetch('http://localhost:3000/users/add', {
+   fetch('/users/add', {
        method: 'POST', 
        headers: {
           'Content-Type': 'application/json',
@@ -221,7 +221,7 @@ const loginUser= async (userLoginData)=>{
         },
         body: JSON.stringify(userData)
     }
-    fetch('http://localhost:3000/users/login',options)
+    fetch('/users/login',options)
    .then(response => response.json())
    .then(data => {
     if(data.user){
@@ -258,7 +258,7 @@ const logout=()=>{
            'Authorization': `Bearer ${token}`
         }
     }
-   fetch('http://localhost:3000/users/logout',options)
+   fetch('/users/logout',options)
    .then(response => response.json())
    .then(data => {
        userLoggedinTools.classList.add('display-none')
@@ -279,7 +279,7 @@ const logoutAll=()=>{
            'Authorization': `Bearer ${token}`
         }
     }
-   fetch('http://localhost:3000/users/logoutAll',options)
+   fetch('/users/logoutAll',options)
    .then(response => response.json())
    .then(data => {
        userLoggedinTools.classList.add('display-none')
