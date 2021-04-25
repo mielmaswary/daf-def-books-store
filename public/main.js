@@ -1,6 +1,7 @@
 ///////////////////elements///////////////////////
 let expirationTime=0;
 let expirationTimeLeft=undefined;
+const hostUrl='https://miel-dafdef-books-store.herokuapp.com'
 
 //header
 const utilsContainer=document.getElementsByClassName('utils-container')[0]
@@ -62,7 +63,7 @@ const payBill=document.getElementsByClassName('pay-bill')[0]
 ///////////////////server functions////////////////////
 
 const renderImages=()=>{
-    const url='/books/get-all'
+    const url=`${hostUrl}/books/get-all`
 
     fetch(url).then((res)=>{
         if(res.ok){
@@ -99,7 +100,7 @@ const renderImages=()=>{
 const renderBookInfo=(book)=>{
     console.log(book.id)
     localStorage.setItem('bookId',book.id)
-     const url=`/books/get/${book.id}`
+     const url=`${hostUrl}/books/get/${book.id}`
    
      fetch(url).then((res)=>{
         if(res.ok){
@@ -120,7 +121,7 @@ const renderBookInfo=(book)=>{
 
 
 const renderBooksImagesBySearch=(searchValue)=>{
-    const url=`/books/${searchValue}`
+    const url=`${hostUrl}/books/${searchValue}`
 
     fetch(url).then((res)=>{
         if(res.ok){
@@ -155,7 +156,7 @@ const renderBooksImagesById=()=>{
            'Authorization': `Bearer ${token}`
         }
     }
-    fetch(`/books/get-by-id`,options)
+    fetch(`${hostUrl}/books/get-by-id`,options)
     .then(res=>res.json())
     .then(books=>{
         let totalPay=0
@@ -195,7 +196,7 @@ const renderBooksImagesById=()=>{
 
 const addUserToDB=(userData)=>{
 
-   fetch('/users/add', {
+   fetch(`${hostUrl}/users/add`, {
        method: 'POST', 
        headers: {
           'Content-Type': 'application/json',
@@ -221,7 +222,7 @@ const loginUser= async (userLoginData)=>{
         },
         body: JSON.stringify(userData)
     }
-    fetch('/users/login',options)
+    fetch(`${hostUrl}/users/login`,options)
    .then(response => response.json())
    .then(data => {
     if(data.user){
@@ -258,7 +259,7 @@ const logout=()=>{
            'Authorization': `Bearer ${token}`
         }
     }
-   fetch('/users/logout',options)
+   fetch(`${hostUrl}/users/logout`,options)
    .then(response => response.json())
    .then(data => {
        userLoggedinTools.classList.add('display-none')
@@ -279,7 +280,7 @@ const logoutAll=()=>{
            'Authorization': `Bearer ${token}`
         }
     }
-   fetch('/users/logoutAll',options)
+   fetch(`${hostUrl}/users/logoutAll`,options)
    .then(response => response.json())
    .then(data => {
        userLoggedinTools.classList.add('display-none')
@@ -559,7 +560,7 @@ const closePurchasedBooksModal=()=>{
 
 const bookPurchased=(bookId)=>{
         token=localStorage.getItem('token')
-        fetch(`/users/bookPurchase/${bookId}`, {
+        fetch(`${hostUrl}/users/bookPurchase/${bookId}`, {
             method: 'POST', 
             headers: {
                'Content-Type': 'application/json',
@@ -592,7 +593,7 @@ const closeMustLoginModal=()=>{
 const removeBookFromCart=(bookId)=>{
       token=localStorage.getItem('token')
       console.log(localStorage.getItem('token'))
-        fetch(`/users/bookUnPurchase/${bookId}`, {
+        fetch(`${hostUrl}/users/bookUnPurchase/${bookId}`, {
             method: 'POST', 
             headers: {
                'Content-Type': 'application/json',
