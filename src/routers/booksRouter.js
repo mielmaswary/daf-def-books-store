@@ -37,6 +37,7 @@ router.get('books/get-all', async (req,res)=>{
 
     try{
        const books=await Book.find()
+       console.log(books)
        res.send(books)
     }catch(err){
        res.status(400).send(err.message)
