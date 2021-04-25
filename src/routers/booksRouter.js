@@ -45,7 +45,7 @@ router.get('/books/get-all', async (req,res)=>{
 })
 
 
-router.get('books/get/:id', async (req,res)=>{
+router.get('/books/get/:id', async (req,res)=>{
     const bookId=req.params.id;
     console.log(bookId)
      try{
@@ -62,7 +62,7 @@ router.get('books/get/:id', async (req,res)=>{
  
 
 
-router.get('books/get-by-id', auth, async (req,res)=>{
+router.get('/books/get-by-id', auth, async (req,res)=>{
     const purchasedsBooksIds=req.user.purchasedBooks
     try{
         console.log('books!')
@@ -85,7 +85,7 @@ router.get('books/get-by-id', auth, async (req,res)=>{
 	}
 })
 
-router.get('books/:searchValue', async (req,res)=>{
+router.get('/books/:searchValue', async (req,res)=>{
     const searchValue=req.params.searchValue;
     const regex = new RegExp(searchValue, 'i') // i for case insensitive
      try{
@@ -106,7 +106,7 @@ router.get('books/:searchValue', async (req,res)=>{
 
 
 
-router.post('books/add',async (req,res)=>{
+router.post('/books/add',async (req,res)=>{
     
     const bookToAdd=new Book(req.body)
     try{
@@ -122,7 +122,7 @@ router.post('books/add',async (req,res)=>{
     }
 })
 
-router.post('books/remove/:id',async (req,res)=>{
+router.post('/books/remove/:id',async (req,res)=>{
     
     const bookToRemove=await Book.findById(req.params.id)
     try{
@@ -137,7 +137,7 @@ router.post('books/remove/:id',async (req,res)=>{
     }
 })
 
-router.patch('books/edit/:id', async(req,res)=>{
+router.patch('/books/edit/:id', async(req,res)=>{
 
     const id=req.params.id
     try{
