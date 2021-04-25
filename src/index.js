@@ -1,6 +1,6 @@
 const express =require('express')
 const cors = require("cors")
-const port=process.env.port
+const port=process.env.PORT
 const app=express()
 const booksRouters=require('./routers/booksRouter')
 const usersRouters=require('./routers/usersRouter')
