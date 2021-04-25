@@ -33,7 +33,7 @@ const auth = async (req, res, next) => {
 const router=new express.Router()
 
 
-router.get('books/get-all', async (req,res)=>{
+router.get('/books/get-all', async (req,res)=>{
 
     try{
        const books=await Book.find()
@@ -43,6 +43,8 @@ router.get('books/get-all', async (req,res)=>{
        res.status(400).send(err.message)
     }
 })
+
+
 router.get('books/get/:id', async (req,res)=>{
     const bookId=req.params.id;
     console.log(bookId)
