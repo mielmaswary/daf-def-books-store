@@ -460,7 +460,7 @@
 @media (max-width: 500px) {
   .gallery-container .gallery.mid .gallery-cell {
     min-width: 100px;
-    height: 100px;
+    height: 300px;
   }
 }
 
