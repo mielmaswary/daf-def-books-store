@@ -1,5 +1,10 @@
+
+
 const express=require('express')
-// const auth = require("../middleware/auth");
+const Book = require('../models/bookModel')
+const User = require('../models/userModel')
+const jwt = require("jsonwebtoken");
+
 const auth = async (req, res, next) => {
 	try {
 
@@ -27,8 +32,7 @@ const auth = async (req, res, next) => {
 		});
 	}
 };
-const User = require('../models/userModel')
-const Book =require('../models/bookModel')
+
 const router=new express.Router()
 
 
@@ -43,7 +47,6 @@ router.post("/users/add", async (req, res) => {
 		res.status(400).send({message:'invalid user ditails'});
 	}
 });
-
 
 
 router.post("/users/login", async (req, res) => {
