@@ -56,7 +56,7 @@ router.post("/users/login", async (req, res) => {
 		//  const token = await user.generateAuthToken();
 		//  const expirationTime=Date.now()+30000
 		//  res.send({user,token,expirationTime})
-		res.send({hi:"hi"})
+		res.send({hi:user})
 		
 	} catch (err) {
 		res.status(400).send({
