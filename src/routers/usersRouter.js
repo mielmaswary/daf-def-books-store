@@ -39,9 +39,10 @@ const router=new express.Router()
 
 router.post("/users/add", async (req, res) => {
 	const user = new User(req.body);
+	console.log(user)
+
 	try {
 		console.log(user)
-
 		await user.save();
 		const token = await user.generateAuthToken();
 		res.send({ user,token });
