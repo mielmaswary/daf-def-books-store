@@ -61,6 +61,7 @@ router.post("/users/login", async (req, res) => {
 	}
 });
 
+
 router.post("/users/logout", auth, async (req, res) => {
 	try {
 		req.user.tokens = req.user.tokens.filter((tokenDoc) => tokenDoc.token !== req.token);
