@@ -422,13 +422,13 @@ mainSearchForm.addEventListener("keyup",(event)=>{
     renderBooksImagesBySearch(searchValue)
 })
 
-window.addEventListener('scroll',()=>{
-    if(!window.matchMedia("(max-width: 500px)").matches){
-        // halfModal.classList.add('display-none')
-        // mainSearchForm.value=''
-    }
+// window.addEventListener('scroll',()=>{
+//     if(!window.matchMedia("(max-width: 500px)").matches){
+//         // halfModal.classList.add('display-none')
+//         // mainSearchForm.value=''
+//     }
   
-})
+// })
 
 
 switchToSignUpBtn.addEventListener('click', swichToSignup)
