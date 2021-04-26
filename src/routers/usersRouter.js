@@ -52,10 +52,11 @@ router.post("/users/add", async (req, res) => {
 
 router.post("/users/login", async (req, res) => {
 	try {
-		 const user = await User.findUserbyEmailAndPassword(req.body.email, req.body.password);
-		 const token = await user.generateAuthToken();
-		 const expirationTime=Date.now()+30000
-		 res.send({user,token,expirationTime})
+		//  const user = await User.findUserbyEmailAndPassword(req.body.email, req.body.password);
+		//  const token = await user.generateAuthToken();
+		//  const expirationTime=Date.now()+30000
+		//  res.send({user,token,expirationTime})
+		res.send({hi:"hi"})
 		
 	} catch (err) {
 		res.status(400).send({
