@@ -9,6 +9,9 @@
        justify-content: space-evenly;
        align-items: center;
        overflow: hidden;
+       @media (max-width:800px) {
+        height: 90vh;
+       }
        .book-title{
            height: 90%;
            flex:1.3;
@@ -25,8 +28,8 @@
               background-position:center;
               background-size: contain;
               background-repeat: no-repeat;
-              margin: 8px 0;
-              @media(max-width:500px){
+              margin: 2px 0;
+              @media(max-width:800px){
                 height: 55%;
                 min-width: 130px;
                 margin: 4px 0;
@@ -43,7 +46,6 @@
             font-size: 20px;
             @media(max-width:500px){
               font-size: 16px;
-
             }
            }
    
@@ -57,19 +59,22 @@
             border: solid 1px rgb(236, 223, 226);
             @media(max-width:800px){
               border:none;
+              transform: translateX(-10px);
+
             }
             @media(max-width:500px){
               transform: translate(0, -46px);
               padding: 4px;
+              margin: 2px;
             }
 
             .summery{
-              width: 90%;
+              width: 100%;
              p, h3{
               color: #f25;
               
              } 
-             @media(max-width:500px){
+             @media(max-width:800px){
                 h3{
                   font-size: 14px;
                 }
