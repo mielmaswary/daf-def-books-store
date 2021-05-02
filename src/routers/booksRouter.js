@@ -92,6 +92,7 @@ router.get('/books/:searchValue', async (req,res)=>{
         const booksByBookName=await Book.find({bookName: {$regex: regex}})
         const booksByAuthorName=await Book.find({authorName: {$regex: regex}})
         books=booksByBookName.concat(booksByAuthorName)
+        console.log(books)
         if(!books)
         {
             res.status(404).send({'message':'no books to display'})

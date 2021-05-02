@@ -1,8 +1,8 @@
 ///////////////////elements///////////////////////
 let expirationTime=0;
 let expirationTimeLeft=undefined;
-const hostUrl='https://miel-dafdef-book-store.herokuapp.com'
-// const hostUrl='http://localhost:3000'
+// const hostUrl='https://miel-dafdef-book-store.herokuapp.com'
+const hostUrl='http://localhost:3000'
 
 //header
 const utilsContainer=document.getElementsByClassName('utils-container')[0]
@@ -132,8 +132,9 @@ const renderBooksImagesBySearch=(searchValue)=>{
             throw new Error(res.status)
         }
     }).then((jsonObj)=>{
-       const seachedBooksUrl=jsonObj.map(img=>img.imageUrl)
-       const searchedBooksId=jsonObj.map(img=>img._id)
+       let books=removeDuplicateBooks(jsonObj,it=>it._id)
+       const seachedBooksUrl=books.map(img=>img.imageUrl)
+       const searchedBooksId=books.map(img=>img._id)
        booksSearchTitle.innerHTML=seachedBooksUrl.length>0?'הנה ספרים שמתאימים לחיפוש שלך...':'לא מצאנו ספרים שמתאימים לחיפוש שלך...'
        while(searchedBooksContainer.children.length>0){
            searchedBooksContainer.removeChild(searchedBooksContainer.lastChild)
@@ -147,6 +148,7 @@ const renderBooksImagesBySearch=(searchValue)=>{
        }
     })  
 }
+
 
 const renderBooksImagesById=()=>{
     token=localStorage.getItem('token')
@@ -407,29 +409,30 @@ const showLoginErrorMsg=(msg)=>{
    loginErrorMsg.classList.remove('display-none')
 }
 
+
+
+const removeDuplicateBooks=(books,key)=>{
+    return [
+     ...new Map(
+         books.map(x=>[key(x),x])
+     ).values()
+    ]
+ }
 //////////////////eventListeners//////////////////
 
-mainSearchForm.addEventListener('click',()=>{
-   
-})
 
-mainSearchForm.addEventListener("keyup",(event)=>{
-    let searchValue=mainSearchForm.value.trim()
-    if(searchValue!=='' && event.key!=='Backspace')
-        halfModal.classList.remove('display-none')
-    else
-        searchValue='emptyValue'
-    renderBooksImagesBySearch(searchValue)
-})
-
-// window.addEventListener('scroll',()=>{
-//     if(!window.matchMedia("(max-width: 500px)").matches){
-//         // halfModal.classList.add('display-none')
-//         // mainSearchForm.value=''
-//     }
-  
-// })
-
+let mainSearchTimeOut=null
+mainSearchForm.addEventListener('keyup', (event)=> {
+    clearTimeout(mainSearchTimeOut);
+    mainSearchTimeOut = setTimeout(function () {
+        let searchValue=mainSearchForm.value.trim()
+        if(searchValue!=='' && event.key!=='Backspace')
+            halfModal.classList.remove('display-none')
+        else
+            searchValue='emptyValue'
+        renderBooksImagesBySearch(searchValue)
+    }, 1000);
+});
 
 switchToSignUpBtn.addEventListener('click', swichToSignup)
 switchToLoginBtn.addEventListener('click',swichToLogin)
