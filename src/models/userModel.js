@@ -70,18 +70,15 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.statics.findUserbyEmailAndPassword = async (email, password) => {
-	const user = await User.findOne({email });
+	const user = await User.findOne({email});
 	console.log(user)
 	if (!user) {
 		throw new Error("unable to login");
 	}
-
 	const isPassMatch = await bcrypt.compare(password, user.password);
-
 	if (!isPassMatch) {
 		throw new Error("unable to login");
 	}
-
 	return user;
 };
 
@@ -98,9 +95,7 @@ userSchema.methods.generateAuthToken = async function () {
 	);
 	user.tokens = user.tokens.concat({ token });
 	console.log(user.tokens)
-
 	await user.save();
-
 	return token;
 };
 
